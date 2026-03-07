@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Ballot Blunders</title>
+<title>Ballot Blunders:A Statistical Analysis of Ballot Error Rates in the 2025 Philippine Midterm Elections</title>
 
 <link rel="stylesheet" href="src/style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
@@ -18,7 +18,13 @@
 
 <nav class="navbar">
 
-<div class="logo">SURI</div>
+<div class="logo">
+
+<img src="public/images/logo.svg">
+
+<span>SURI</span>
+
+</div>
 
 <ul>
 <li><a href="#overview">Overview</a></li>
@@ -35,49 +41,49 @@
 
 <section class="hero">
 
-<div class="hero-text">
+<div class="hero-left">
 
 <h1>Ballot Blunders</h1>
 
 <h2>
-A Statistical Analysis of Ballot Error Rates  
-in the 2025 Philippine Midterm Elections
+A Statistical Analysis of Ballot Error Rates in the  
+2025 Philippine Midterm Elections
 </h2>
 
 <p>
 Understanding voting errors to support transparent and reliable elections.
 </p>
 
-<button onclick="scrollToOverview()">Explore Study</button>
+<button>Explore Study</button>
 
 </div>
 
-<div class="hero-image">
+<div class="hero-right">
+
 <img src="public/images/election.svg">
+
 </div>
 
 </section>
 
 
 
-<section id="overview">
+<section id="overview" class="section">
 
 <h2>Overview</h2>
 
-<div class="grid">
+<div class="card-grid">
 
 <div class="card">
 
 <h3>Background</h3>
 
 <p>
-Ballot errors such as overvotes and undervotes can affect election accuracy
-and may reflect issues in ballot design or voter understanding.
-Understanding these patterns helps improve electoral integrity.
+Ballot errors such as overvotes and undervotes can affect election
+accuracy and may indicate issues in ballot design or voter understanding.
 </p>
 
 </div>
-
 
 <div class="card">
 
@@ -91,27 +97,25 @@ Understanding these patterns helps improve electoral integrity.
 
 </div>
 
-
 <div class="card">
 
 <h3>Proposed Solution</h3>
 
 <p>
-Apply statistical analysis on precinct-level data to identify patterns
-and factors influencing ballot errors.
+Statistical analysis of precinct-level election data to identify
+factors influencing ballot error rates.
 </p>
 
 </div>
-
 
 <div class="card">
 
 <h3>Hypothesis</h3>
 
 <ul>
-<li>Regions show different error rates</li>
+<li>Regional differences exist</li>
 <li>Senatorial ballots have higher errors</li>
-<li>Precinct size affects error rates</li>
+<li>Precinct size influences errors</li>
 </ul>
 
 </div>
@@ -122,7 +126,7 @@ and factors influencing ballot errors.
 
 
 
-<section id="data">
+<section id="data" class="section alt">
 
 <h2>Data Collection</h2>
 
@@ -133,18 +137,20 @@ and factors influencing ballot errors.
 <h3>Dataset Overview</h3>
 
 <p>
-The project uses precinct-level election datasets containing information on
-registered voters, actual voters, overvotes, undervotes, and candidate results.
+Precinct-level datasets containing registered voters, actual voters,
+overvotes, undervotes, and candidate vote counts.
 </p>
 
+<h3>Data Collection Process</h3>
+
 <p>
-After removing precincts with zero voters, the final dataset contains
-92,745 precinct records.
+Data sourced from COMELEC and published through Figshare.
+Version 2 dataset was used to correct missing election returns.
 </p>
 
 </div>
 
-<img src="public/images/data.svg">
+<img src="public/images/dataset.svg">
 
 </div>
 
@@ -152,31 +158,17 @@ After removing precincts with zero voters, the final dataset contains
 
 
 
-<section id="analysis">
+<section id="analysis" class="section">
 
 <h2>Data Analysis</h2>
 
-<div class="timeline">
+<div class="steps">
 
-<div class="step">
-Check dataset structure
-</div>
-
-<div class="step">
-Remove precincts with zero voters
-</div>
-
-<div class="step">
-Verify data consistency
-</div>
-
-<div class="step">
-Compute turnout and error rates
-</div>
-
-<div class="step">
-Export cleaned dataset
-</div>
+<div class="step">Load datasets using Pandas</div>
+<div class="step">Check duplicates</div>
+<div class="step">Remove zero-voter precincts</div>
+<div class="step">Compute turnout & error rates</div>
+<div class="step">Export cleaned data</div>
 
 </div>
 
@@ -184,7 +176,7 @@ Export cleaned dataset
 
 
 
-<section id="discussion">
+<section id="discussion" class="section alt">
 
 <h2>Discussion</h2>
 
@@ -194,44 +186,32 @@ Export cleaned dataset
 
 
 
-<section id="ml">
+<section id="ml" class="section">
 
 <h2>Machine Learning Modelling</h2>
 
-<p>Machine learning experiments and predictive models will be presented here.</p>
+<p>Predictive models and experiments will be presented here.</p>
 
 </section>
 
 
 
-<section id="about">
+<section id="about" class="section alt">
 
 <h2>About</h2>
 
 <div class="team">
 
-<div class="member">
-<h3>Wyndell Almazan</h3>
-</div>
+<div class="member">Wyndell Almazan</div>
 
-<div class="member">
-<h3>Mariel Pulbosa</h3>
-</div>
+<div class="member">Mariel Pulbosa</div>
 
-<div class="member">
-<h3>Jesus Verzosa</h3>
-</div>
+<div class="member">Jesus Verzosa</div>
 
 </div>
-
-<p class="sdg">
-SDG 16 — Peace, Justice, and Strong Institutions
-</p>
 
 </section>
 
-
-<script src="src/script.js"></script>
 
 </body>
 </html>
