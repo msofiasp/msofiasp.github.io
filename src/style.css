@@ -422,6 +422,26 @@ margin:80px auto;
 border-radius:2px;
 }
 
+.dataset-links{
+margin-top:20px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.dataset-btn{
+padding:12px 20px;
+background:#4C628F;
+color:white;
+border-radius:8px;
+text-decoration:none;
+font-weight:500;
+transition:0.2s;
+}
+
+.dataset-btn:hover{
+background:#3a4f73;
+}
 
 .references-list{
 max-width:900px;
