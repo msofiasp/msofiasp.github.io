@@ -21,12 +21,14 @@ top:0;
 .logo{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 font-weight:600;
+font-size:18px;
 }
 
 .logo img{
-height:32px;
+height:56px;
+width:auto;
 }
 
 .navbar ul{
