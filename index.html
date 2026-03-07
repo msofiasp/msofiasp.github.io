@@ -154,29 +154,90 @@ The number of registered voters per precinct is significantly associated with ba
 
 <section id="data" class="section alt">
 
-<h2>Data Collection</h2>
+<h2 class="section-title">Data Collection</h2>
+
+<div class="divider"></div>
+
+<div class="dataset-cards">
+
+<div class="dataset-card">
+<h3>Rows</h3>
+<p>92,822 original rows</p>
+</div>
+
+<div class="dataset-card">
+<h3>Columns</h3>
+<p>78 (senate) • 167 (partylist)</p>
+</div>
+
+<div class="dataset-card">
+<h3>Final Dataset</h3>
+<p>92,745 precincts</p>
+</div>
+
+</div>
+
+
 
 <div class="two-col">
 
 <div>
 
-<h3>Dataset Overview</h3>
+<h3 class="subheading">Dataset Description</h3>
 
 <p>
-Precinct-level datasets containing registered voters, actual voters,
-overvotes, undervotes, and candidate vote counts.
+This project will utilize the two 2025 Philippine Midterm Elections datasets.
+They contain precinct-level electoral data, including the number of registered
+voters, actual voters, overvotes, undervotes, valid votes, and vote counts per
+candidate for senatorial and party-lists.
 </p>
 
-<h3>Data Collection Process</h3>
+<p>
+These include overseas (OAV) and local absentee voting (LAV).
+</p>
 
 <p>
-Data sourced from COMELEC and published through Figshare.
-Version 2 dataset was used to correct missing election returns.
+The senate results contained 92,822 rows (0 to 92,821) and 78 columns,
+while the partylist results contained 92,822 rows and 167 columns.
+However, 77 precincts with zero voters were removed to avoid undefined
+ballot error rate calculations, resulting in 92,745 rows.
 </p>
 
 </div>
 
-<img src="public/images/data.svg">
+
+<div class="dataset-visual">
+
+<img src="public/images/dataset.svg">
+
+</div>
+
+</div>
+
+
+
+<h3 class="subheading">Data Collection Process</h3>
+
+<div class="text-block">
+
+<p>
+The datasets were published by Vianney Tumbagahan on Figshare using the
+scraping script created by Professor Christian Alis, a Senior Data Scientist
+at the Asian Institute of Management. These datasets are originally sourced
+from the Commission on Elections (COMELEC) website.
+</p>
+
+<p>
+For transparency, since May 21, 2025, the dataset has been updated to
+account for 23 missing election returns due to a bug with the scraping script.
+Fourteen were from Philippine results and nine from overseas absentee voting.
+</p>
+
+<p>
+Version 2 of the dataset was used for this project. No sampling was applied
+because the dataset already contains the complete records of precinct results
+for the 2025 Midterm Elections.
+</p>
 
 </div>
 
@@ -186,15 +247,85 @@ Version 2 dataset was used to correct missing election returns.
 
 <section id="analysis" class="section">
 
-<h2>Data Analysis</h2>
+<h2 class="section-title">Data Analysis</h2>
 
-<div class="steps">
+<div class="divider"></div>
 
-<div class="step">Load datasets using Pandas</div>
-<div class="step">Check duplicates</div>
-<div class="step">Remove zero-voter precincts</div>
-<div class="step">Compute turnout & error rates</div>
-<div class="step">Export cleaned data</div>
+<h3 class="subheading">Data Preprocessing</h3>
+
+<div class="timeline">
+
+<div class="timeline-step">
+
+<h4>1. Dataset Inspection</h4>
+
+<p>
+The CSV files were loaded using the Python Pandas library.
+General information of both datasets was checked using the info() function.
+</p>
+
+</div>
+
+
+<div class="timeline-step">
+
+<h4>2. Duplicate Checks</h4>
+
+<p>
+The duplicated().sum() function was used to check for duplicates.
+No duplicate rows or duplicate machineID entries were found.
+</p>
+
+</div>
+
+
+<div class="timeline-step">
+
+<h4>3. Removal of Zero Voters</h4>
+
+<p>
+Rows with actualVoters = 0 (77 precincts) were removed
+to prevent division-by-zero errors when computing ballot error rates.
+</p>
+
+</div>
+
+
+<div class="timeline-step">
+
+<h4>4. Consistency Checks</h4>
+
+<p>
+All actual voters were verified to be less than or equal to registered voters.
+It was also confirmed that no precinct had zero registered voters.
+</p>
+
+</div>
+
+
+<div class="timeline-step">
+
+<h4>5. Rate Calculations</h4>
+
+<p>
+Turnout rate and ballot error rate were calculated using:
+(actualVoters / registeredVoters) and
+(overVotes + underVotes) / actualVoters.
+</p>
+
+</div>
+
+
+<div class="timeline-step">
+
+<h4>6. Export</h4>
+
+<p>
+Cleaned datasets and region-level summaries were exported as CSV files
+and uploaded to Google Sheets for further analysis.
+</p>
+
+</div>
 
 </div>
 
