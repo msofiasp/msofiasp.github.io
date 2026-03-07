@@ -25,9 +25,10 @@
 
 <ul class="nav-links">
 <li><a href="#overview">Overview</a></li>
-<li><a href="#data">Dataset</a></li>
-<li><a href="#analysis">Research</a></li>
-<li><a href="#discussion">Hypothesis</a></li>
+<li><a href="#data">Data Collection</a></li>
+<li><a href="#analysis">Data Analysis</a></li>
+<li><a href="#discussion">Discussion</a></li>
+<li><a href="#ml">ML Modelling</a></li>
 <li><a href="#about">About</a></li>
 </ul>
 
@@ -48,17 +49,15 @@ A Statistical Analysis of Ballot Error Rates in the 2025 Philippine Midterm Elec
 </h2>
 
 <p class="hero-desc">
-Understanding voting errors is essential to protecting electoral integrity.
-Through statistical analysis of precinct-level data, this study explores
-patterns in ballot errors across regions, ballot types, and voter populations
-in the 2025 Philippine Midterm Elections.
+Exploring patterns of voting errors using precinct-level election data to support
+transparent, reliable, and data-driven electoral processes.
 </p>
 
 <p class="sdg">
 Aligned with <b>SDG 16 — Peace, Justice, and Strong Institutions</b>
 </p>
 
-<button onclick="scrollToOverview()">Explore the Study</button>
+<button onclick="scrollToOverview()">Explore Study</button>
 
 </div>
 
@@ -68,28 +67,96 @@ Aligned with <b>SDG 16 — Peace, Justice, and Strong Institutions</b>
 
 <section id="overview">
 
-<h2 class="section-title">
-Project Overview
-</h2>
+<h2 class="section-title">Overview</h2>
+
+<h3>Background</h3>
 
 <p>
-Fair and reliable elections are fundamental to strong democratic institutions.
-However, ballot errors such as <b>overvotes</b> and <b>undervotes</b> may distort
-election outcomes and signal issues in ballot design, voter understanding,
-or precinct-level election management.
+Fair elections are essential for maintaining strong democratic institutions.
+However, ballot errors such as <b>overvotes</b> and <b>undervotes</b> can affect the
+accuracy of election results and may reflect issues in ballot design, voter
+understanding, or precinct-level election management.
 </p>
 
 <p>
-This study analyzes ballot error rates in the <b>2025 Philippine Midterm Elections</b>
-using precinct-level electoral data. It investigates whether voting errors vary
-across regions, whether complex ballots lead to higher error rates, and whether
-precinct voter size influences ballot accuracy.
+Previous studies suggest that ballot characteristics, such as the number of
+candidates and ballot length, influence the likelihood of voting errors.
+Understanding these patterns helps identify factors affecting electoral reliability.
+</p>
+
+
+<h3>Research Questions</h3>
+
+<ul>
+
+<li>Do ballot error rates differ significantly across Philippine regions?</li>
+
+<li>Are ballot error rates higher in senatorial ballots compared to party-list ballots?</li>
+
+<li>Is the number of registered voters per precinct associated with ballot error rates?</li>
+
+</ul>
+
+
+
+<h3>Proposed Solutions</h3>
+
+<p>
+This study applies statistical analysis to examine relationships between ballot
+design, precinct characteristics, and error rates. The findings aim to provide
+evidence that may support improvements in election processes and ballot design.
+</p>
+
+
+
+<h3>Hypotheses</h3>
+
+<ul>
+
+<li>Ballot error rates vary significantly across Philippine regions.</li>
+
+<li>Senatorial ballots produce higher error rates than party-list ballots.</li>
+
+<li>Precinct voter population significantly influences ballot error rates.</li>
+
+</ul>
+
+</section>
+
+
+
+<section id="data">
+
+<h2 class="section-title">Data Collection</h2>
+
+
+<h3>Dataset Overview</h3>
+
+<p>
+The study uses two datasets from the <b>2025 Philippine Midterm Elections</b>
+containing precinct-level electoral data including registered voters, actual voters,
+overvotes, undervotes, valid votes, and vote counts per candidate.
 </p>
 
 <p>
-Through statistical analysis, descriptive statistics, and regression modeling,
-the research aims to identify key factors associated with ballot errors and
-contribute insights that support more transparent and reliable electoral processes.
+Both senatorial and party-list datasets contain <b>92,822 precinct records</b>.
+After removing precincts with zero voters, the final dataset contains
+<b>92,745 rows</b>.
+</p>
+
+
+
+<h3>Data Collection Process</h3>
+
+<p>
+The datasets were published by <b>Vianney Tumbagahan</b> on Figshare using
+a scraping script created by Professor Christian Alis. The original data
+were sourced from the official <b>COMELEC election results website</b>.
+</p>
+
+<p>
+Version 2 of the dataset was used, which corrected missing election returns
+caused by an earlier scraping script bug.
 </p>
 
 </section>
@@ -98,39 +165,26 @@ contribute insights that support more transparent and reliable electoral process
 
 <section id="analysis">
 
-<h2 class="section-title">Research Questions</h2>
-
-<div class="questions">
-
-<div class="question-card">
-Do ballot error rates significantly differ across Philippine regions?
-</div>
-
-<div class="question-card">
-Are error rates higher in senatorial ballots compared to party-list ballots?
-</div>
-
-<div class="question-card">
-Does the number of registered voters per precinct influence ballot error rates?
-</div>
-
-</div>
-
-</section>
+<h2 class="section-title">Data Analysis</h2>
 
 
+<h3>Data Preprocessing</h3>
 
-<section id="discussion">
+<ul>
 
-<h2 class="section-title">Research Hypotheses</h2>
+<li>Loaded CSV datasets using the Python Pandas library.</li>
 
-<ul class="hypothesis">
+<li>Checked dataset structure and column information.</li>
 
-<li>Ballot error rates vary significantly across regions.</li>
+<li>Verified that no duplicate precinct entries exist.</li>
 
-<li>Senatorial ballots produce higher error rates than party-list ballots.</li>
+<li>Removed 77 precincts with zero voters to prevent division errors.</li>
 
-<li>Precinct voter size significantly affects ballot error rates.</li>
+<li>Confirmed that actual voters never exceeded registered voters.</li>
+
+<li>Calculated turnout rate and ballot error rate for each precinct.</li>
+
+<li>Exported cleaned datasets and summaries for further analysis.</li>
 
 </ul>
 
@@ -138,25 +192,50 @@ Does the number of registered voters per precinct influence ballot error rates?
 
 
 
+<section id="discussion">
+
+<h2 class="section-title">Discussion</h2>
+
+<p>
+(To be completed after statistical analysis and interpretation of results.)
+</p>
+
+</section>
+
+
+
+<section id="ml">
+
+<h2 class="section-title">Machine Learning Modelling</h2>
+
+<p>
+(To be completed after implementing predictive models and evaluating their results.)
+</p>
+
+</section>
+
+
+
 <section id="about">
 
-<h2 class="section-title">Research Team</h2>
+<h2 class="section-title">About</h2>
 
-<div class="team">
+<p><b>Group Name:</b> Group EIGHT (Elegant, Incredible, Glamorous, and Hot Team)</p>
 
-<div class="member">
-<h3>Wyndell Almazan</h3>
-</div>
+<p><b>Members:</b></p>
 
-<div class="member">
-<h3>Mariel Pulbosa</h3>
-</div>
+<ul>
+<li>Wyndell Almazan</li>
+<li>Mariel Pulbosa</li>
+<li>Jesus Verzosa</li>
+</ul>
 
-<div class="member">
-<h3>Jesus Verzosa</h3>
-</div>
+<p><b>Chosen SDG:</b> SDG 16 — Peace, Justice, and Strong Institutions</p>
 
-</div>
+<p>
+This research aims to support transparent and reliable democratic processes
+by analyzing patterns of ballot errors using data-driven methods.
+</p>
 
 </section>
 
@@ -167,6 +246,7 @@ Does the number of registered voters per precinct influence ballot error rates?
 <p>© 2025 Ballot Blunders Research Project</p>
 
 </footer>
+
 
 
 <script src="src/script.js"></script>
