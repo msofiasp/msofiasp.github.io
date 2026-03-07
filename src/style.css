@@ -319,3 +319,39 @@ padding:25px;
 border-radius:10px;
 border-left:5px solid #4C628F;
 }
+
+.stats{
+display:flex;
+justify-content:space-between;
+margin:50px 0;
+gap:20px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:12px;
+text-align:center;
+flex:1;
+box-shadow:0 10px 20px rgba(0,0,0,0.05);
+}
+
+.stat h3{
+font-family:'Playfair Display';
+font-size:42px;
+color:#4C628F;
+margin:0;
+}
+
+.stat p{
+margin-top:5px;
+color:#555;
+}
+
+.stat{
+transition:transform 0.25s ease;
+}
+
+.stat:hover{
+transform:translateY(-5px);
+}
