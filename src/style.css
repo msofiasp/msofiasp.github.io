@@ -421,3 +421,13 @@ background:#4C628F;
 margin:80px auto;
 border-radius:2px;
 }
+
+
+.references-list{
+max-width:900px;
+line-height:1.8;
+}
+
+.references-list p{
+margin-bottom:20px;
+}
