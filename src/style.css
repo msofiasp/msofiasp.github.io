@@ -11,7 +11,7 @@ color:#2f2f2f;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 80px;
+padding:15px 80px;
 background:rgba(255,255,255,0.6);
 backdrop-filter:blur(10px);
 position:sticky;
@@ -93,7 +93,7 @@ width:320px;
 
 
 .section{
-padding:80px 80px;
+padding:70px 80px;
 }
 
 .section.alt{
