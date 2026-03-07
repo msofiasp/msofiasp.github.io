@@ -6,28 +6,39 @@ behavior:"smooth"
 
 }
 
-const counters = document.querySelectorAll('.counter');
+document.addEventListener("DOMContentLoaded", () => {
 
-const speed = 200;
+const counters = document.querySelectorAll(".counter");
 
 counters.forEach(counter => {
 
-const updateCount = () => {
+const target = +counter.getAttribute("data-target");
 
-const target = +counter.getAttribute('data-target');
-const count = +counter.innerText;
+let count = 0;
 
-const increment = target / speed;
+const updateCounter = () => {
+
+const increment = target / 100;
 
 if(count < target){
-counter.innerText = Math.ceil(count + increment);
-setTimeout(updateCount,10);
-}else{
+
+count += increment;
+
+counter.innerText = Math.floor(count);
+
+requestAnimationFrame(updateCounter);
+
+}
+else{
+
 counter.innerText = target;
+
 }
 
 };
 
-updateCount();
+updateCounter();
+
+});
 
 });
