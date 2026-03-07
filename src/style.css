@@ -21,7 +21,7 @@ top:0;
 .logo{
 display:flex;
 align-items:center;
-gap:16px;
+gap:12px;
 font-weight:600;
 font-size:18px;
 }
