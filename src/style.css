@@ -1,107 +1,87 @@
 body{
 font-family:Inter;
-background:#0a1f44;
-color:#f8fafc;
+background:#D9D7B3;
 margin:0;
+color:#2f2f2f;
 }
 
 .navbar{
 display:flex;
 justify-content:space-between;
 padding:20px 80px;
-background:#071833;
+background:#4C628F;
+color:white;
 }
 
-.logo{
-font-family:Playfair Display;
-font-size:22px;
-color:#7aa2ff;
-}
-
-.nav-links{
-display:flex;
-gap:30px;
-list-style:none;
-}
-
-.nav-links a{
+.navbar a{
+color:white;
 text-decoration:none;
-color:#e5e7eb;
-font-weight:500;
+margin-left:20px;
 }
-
-
 
 .hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
 padding:120px 80px;
-background:linear-gradient(135deg,#0a1f44,#132f66);
-max-width:900px;
+background:#7F92B4;
 }
 
-.main-title{
+.hero h1{
 font-family:Playfair Display;
-font-size:80px;
-margin-bottom:10px;
-color:#c7d2fe;
+font-size:70px;
 }
 
-.subtitle{
-font-size:24px;
+.hero h2{
 font-weight:300;
-color:#dbeafe;
-margin-bottom:25px;
 }
 
-.hero-desc{
-font-size:17px;
-line-height:1.7;
-max-width:650px;
-}
-
-button{
-margin-top:30px;
-padding:12px 28px;
+.hero button{
+margin-top:20px;
+padding:12px 25px;
+background:#4C628F;
 border:none;
-border-radius:8px;
-background:#3b82f6;
 color:white;
-font-weight:500;
-cursor:pointer;
+border-radius:6px;
 }
 
-
+.hero img{
+width:350px;
+}
 
 section{
-padding:80px 80px;
-max-width:900px;
+padding:80px;
 }
 
-.section-title{
-font-family:Playfair Display;
-font-size:34px;
-margin-bottom:25px;
-color:#c7d2fe;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
-.questions{
-display:flex;
-flex-direction:column;
-gap:18px;
-}
-
-.question-card{
-background:#132f66;
-padding:18px;
+.card{
+background:#D9D9D9;
+padding:25px;
 border-radius:10px;
 }
 
-
-
-.hypothesis li{
-margin-bottom:12px;
+.two-col{
+display:flex;
+align-items:center;
+gap:40px;
 }
 
+.timeline{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
 
+.step{
+background:#8C9BB2;
+padding:20px;
+border-radius:8px;
+}
 
 .team{
 display:flex;
@@ -109,9 +89,9 @@ gap:20px;
 }
 
 .member{
-background:#132f66;
+background:#8C9BB2;
 padding:20px;
-border-radius:10px;
+border-radius:8px;
 flex:1;
 text-align:center;
 }
