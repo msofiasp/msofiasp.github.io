@@ -413,3 +413,11 @@ margin-bottom:18px;
 font-size:20px;
 margin-right:10px;
 }
+
+.section-divider{
+width:80px;
+height:3px;
+background:#4C628F;
+margin:80px auto;
+border-radius:2px;
+}
