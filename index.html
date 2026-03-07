@@ -54,7 +54,7 @@ A Statistical Analysis of Ballot Error Rates in the
 Understanding voting errors to support transparent and reliable elections.
 </p>
 
-<button>Explore Study</button>
+<button onclick="scrollToOverview()">Explore Study</button>
 
 </div>
 
@@ -64,6 +64,9 @@ Understanding voting errors to support transparent and reliable elections.
 
 </div>
 
+<div class="hero-shape shape1"></div>
+<div class="hero-shape shape2"></div>
+  
 </section>
 
 
@@ -212,6 +215,33 @@ Version 2 dataset was used to correct missing election returns.
 
 </section>
 
+<script>
 
+function scrollToOverview() {
+
+document.getElementById("overview").scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+</script>
+
+<script>
+
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll(".card, .step, .member").forEach(el => {
+observer.observe(el);
+});
+
+</script>
+  
 </body>
 </html>
