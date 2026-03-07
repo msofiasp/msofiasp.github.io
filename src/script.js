@@ -6,39 +6,57 @@ behavior:"smooth"
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
 const counters = document.querySelectorAll(".counter");
+let started = false;
+
+function runCounters(){
+
+if(started) return;
+
+const section = document.querySelector("#data");
+const sectionTop = section.getBoundingClientRect().top;
+
+if(sectionTop < window.innerHeight - 100){
+
+started = true;
 
 counters.forEach(counter => {
 
 const target = +counter.getAttribute("data-target");
-
 let count = 0;
 
-const updateCounter = () => {
+const duration = 1500;
+const stepTime = 10;
+const steps = duration / stepTime;
+const increment = target / steps;
 
-const increment = target / 100;
-
-if(count < target){
+const update = () => {
 
 count += increment;
 
-counter.innerText = Math.floor(count);
+if(count < target){
 
-requestAnimationFrame(updateCounter);
+counter.innerText = Math.floor(count).toLocaleString();
+setTimeout(update, stepTime);
 
-}
-else{
+}else{
 
-counter.innerText = target;
+counter.innerText = target.toLocaleString();
 
 }
 
 };
 
-updateCounter();
+update();
 
 });
+
+}
+
+}
+
+window.addEventListener("scroll", runCounters);
 
 });
