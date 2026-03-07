@@ -60,3 +60,12 @@ update();
 window.addEventListener("scroll", runCounters);
 
 });
+
+function showDataset(num){
+
+document.getElementById("dataset1").style.display="none";
+document.getElementById("dataset2").style.display="none";
+
+document.getElementById("dataset"+num).style.display="block";
+
+}
