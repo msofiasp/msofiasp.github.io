@@ -355,3 +355,9 @@ transition:transform 0.25s ease;
 .stat:hover{
 transform:translateY(-5px);
 }
+
+.stat h3{
+font-size:48px;
+font-weight:700;
+color:#4C628F;
+}
