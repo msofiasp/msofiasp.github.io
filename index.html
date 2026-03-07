@@ -6,24 +6,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Ballot Blunders: A Statistical Analysis of Ballot Error Rates in the 2025 Philippine Midterm Elections</title>
+<title>Ballot Blunders</title>
 
 <link rel="stylesheet" href="src/style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-
-<header>
-
 <nav class="navbar">
 
 <div class="logo">SURI</div>
 
-<ul class="nav-links">
+<ul>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#data">Data Collection</a></li>
 <li><a href="#analysis">Data Analysis</a></li>
@@ -34,31 +31,29 @@
 
 </nav>
 
-</header>
-
 
 
 <section class="hero">
 
 <div class="hero-text">
 
-<h1 class="main-title">Ballot Blunders</h1>
+<h1>Ballot Blunders</h1>
 
-<h2 class="subtitle">
-A Statistical Analysis of Ballot Error Rates in the 2025 Philippine Midterm Elections
+<h2>
+A Statistical Analysis of Ballot Error Rates  
+in the 2025 Philippine Midterm Elections
 </h2>
 
-<p class="hero-desc">
-Exploring patterns of voting errors using precinct-level election data to support
-transparent, reliable, and data-driven electoral processes.
-</p>
-
-<p class="sdg">
-Aligned with <b>SDG 16 — Peace, Justice, and Strong Institutions</b>
+<p>
+Understanding voting errors to support transparent and reliable elections.
 </p>
 
 <button onclick="scrollToOverview()">Explore Study</button>
 
+</div>
+
+<div class="hero-image">
+<img src="public/images/election.svg">
 </div>
 
 </section>
@@ -67,59 +62,61 @@ Aligned with <b>SDG 16 — Peace, Justice, and Strong Institutions</b>
 
 <section id="overview">
 
-<h2 class="section-title">Overview</h2>
+<h2>Overview</h2>
+
+<div class="grid">
+
+<div class="card">
 
 <h3>Background</h3>
 
 <p>
-Fair elections are essential for maintaining strong democratic institutions.
-However, ballot errors such as <b>overvotes</b> and <b>undervotes</b> can affect the
-accuracy of election results and may reflect issues in ballot design, voter
-understanding, or precinct-level election management.
+Ballot errors such as overvotes and undervotes can affect election accuracy
+and may reflect issues in ballot design or voter understanding.
+Understanding these patterns helps improve electoral integrity.
 </p>
 
-<p>
-Previous studies suggest that ballot characteristics, such as the number of
-candidates and ballot length, influence the likelihood of voting errors.
-Understanding these patterns helps identify factors affecting electoral reliability.
-</p>
+</div>
 
+
+<div class="card">
 
 <h3>Research Questions</h3>
 
 <ul>
-
-<li>Do ballot error rates differ significantly across Philippine regions?</li>
-
-<li>Are ballot error rates higher in senatorial ballots compared to party-list ballots?</li>
-
-<li>Is the number of registered voters per precinct associated with ballot error rates?</li>
-
+<li>Do ballot error rates vary across regions?</li>
+<li>Are senatorial ballots more error-prone?</li>
+<li>Does precinct voter size affect error rates?</li>
 </ul>
 
+</div>
 
 
-<h3>Proposed Solutions</h3>
+<div class="card">
+
+<h3>Proposed Solution</h3>
 
 <p>
-This study applies statistical analysis to examine relationships between ballot
-design, precinct characteristics, and error rates. The findings aim to provide
-evidence that may support improvements in election processes and ballot design.
+Apply statistical analysis on precinct-level data to identify patterns
+and factors influencing ballot errors.
 </p>
 
+</div>
 
 
-<h3>Hypotheses</h3>
+<div class="card">
+
+<h3>Hypothesis</h3>
 
 <ul>
-
-<li>Ballot error rates vary significantly across Philippine regions.</li>
-
-<li>Senatorial ballots produce higher error rates than party-list ballots.</li>
-
-<li>Precinct voter population significantly influences ballot error rates.</li>
-
+<li>Regions show different error rates</li>
+<li>Senatorial ballots have higher errors</li>
+<li>Precinct size affects error rates</li>
 </ul>
+
+</div>
+
+</div>
 
 </section>
 
@@ -127,37 +124,29 @@ evidence that may support improvements in election processes and ballot design.
 
 <section id="data">
 
-<h2 class="section-title">Data Collection</h2>
+<h2>Data Collection</h2>
 
+<div class="two-col">
+
+<div>
 
 <h3>Dataset Overview</h3>
 
 <p>
-The study uses two datasets from the <b>2025 Philippine Midterm Elections</b>
-containing precinct-level electoral data including registered voters, actual voters,
-overvotes, undervotes, valid votes, and vote counts per candidate.
+The project uses precinct-level election datasets containing information on
+registered voters, actual voters, overvotes, undervotes, and candidate results.
 </p>
 
 <p>
-Both senatorial and party-list datasets contain <b>92,822 precinct records</b>.
 After removing precincts with zero voters, the final dataset contains
-<b>92,745 rows</b>.
+92,745 precinct records.
 </p>
 
+</div>
 
+<img src="public/images/dataset.svg">
 
-<h3>Data Collection Process</h3>
-
-<p>
-The datasets were published by <b>Vianney Tumbagahan</b> on Figshare using
-a scraping script created by Professor Christian Alis. The original data
-were sourced from the official <b>COMELEC election results website</b>.
-</p>
-
-<p>
-Version 2 of the dataset was used, which corrected missing election returns
-caused by an earlier scraping script bug.
-</p>
+</div>
 
 </section>
 
@@ -165,28 +154,31 @@ caused by an earlier scraping script bug.
 
 <section id="analysis">
 
-<h2 class="section-title">Data Analysis</h2>
+<h2>Data Analysis</h2>
 
+<div class="timeline">
 
-<h3>Data Preprocessing</h3>
+<div class="step">
+Check dataset structure
+</div>
 
-<ul>
+<div class="step">
+Remove precincts with zero voters
+</div>
 
-<li>Loaded CSV datasets using the Python Pandas library.</li>
+<div class="step">
+Verify data consistency
+</div>
 
-<li>Checked dataset structure and column information.</li>
+<div class="step">
+Compute turnout and error rates
+</div>
 
-<li>Verified that no duplicate precinct entries exist.</li>
+<div class="step">
+Export cleaned dataset
+</div>
 
-<li>Removed 77 precincts with zero voters to prevent division errors.</li>
-
-<li>Confirmed that actual voters never exceeded registered voters.</li>
-
-<li>Calculated turnout rate and ballot error rate for each precinct.</li>
-
-<li>Exported cleaned datasets and summaries for further analysis.</li>
-
-</ul>
+</div>
 
 </section>
 
@@ -194,11 +186,9 @@ caused by an earlier scraping script bug.
 
 <section id="discussion">
 
-<h2 class="section-title">Discussion</h2>
+<h2>Discussion</h2>
 
-<p>
-(To be completed after statistical analysis and interpretation of results.)
-</p>
+<p>Results and interpretations will be added after statistical analysis.</p>
 
 </section>
 
@@ -206,11 +196,9 @@ caused by an earlier scraping script bug.
 
 <section id="ml">
 
-<h2 class="section-title">Machine Learning Modelling</h2>
+<h2>Machine Learning Modelling</h2>
 
-<p>
-(To be completed after implementing predictive models and evaluating their results.)
-</p>
+<p>Machine learning experiments and predictive models will be presented here.</p>
 
 </section>
 
@@ -218,9 +206,7 @@ caused by an earlier scraping script bug.
 
 <section id="about">
 
-<section id="about">
-
-<h2 class="section-title">Research Team</h2>
+<h2>About</h2>
 
 <div class="team">
 
@@ -238,15 +224,11 @@ caused by an earlier scraping script bug.
 
 </div>
 
+<p class="sdg">
+SDG 16 — Peace, Justice, and Strong Institutions
+</p>
+
 </section>
-
-
-<footer>
-
-<p>© 2025 Ballot Blunders Research Project</p>
-
-</footer>
-
 
 
 <script src="src/script.js"></script>
