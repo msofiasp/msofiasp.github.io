@@ -21,13 +21,13 @@ top:0;
 .logo{
 display:flex;
 align-items:center;
-gap:12px;
+gap:20px;
 font-weight:600;
 font-size:18px;
 }
 
 .logo img{
-height:86px;
+height:104px;
 width:auto;
 }
 
