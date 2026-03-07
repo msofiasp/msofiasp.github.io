@@ -1,87 +1,143 @@
 body{
 font-family:Inter;
-background:#D9D7B3;
 margin:0;
+background:#D9D7B3;
 color:#2f2f2f;
 }
+
+
 
 .navbar{
 display:flex;
 justify-content:space-between;
+align-items:center;
 padding:20px 80px;
-background:#4C628F;
-color:white;
+background:rgba(255,255,255,0.6);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:600;
+}
+
+.logo img{
+height:32px;
+}
+
+.navbar ul{
+display:flex;
+gap:25px;
+list-style:none;
 }
 
 .navbar a{
-color:white;
 text-decoration:none;
-margin-left:20px;
+color:#4C628F;
+font-weight:500;
 }
+
+
 
 .hero{
 display:flex;
 align-items:center;
 justify-content:space-between;
 padding:120px 80px;
-background:#7F92B4;
+background:linear-gradient(120deg,#7F92B4,#4C628F);
+color:white;
 }
 
 .hero h1{
 font-family:Playfair Display;
-font-size:70px;
+font-size:64px;
+margin:0;
 }
 
 .hero h2{
 font-weight:300;
+max-width:520px;
+}
+
+.hero p{
+max-width:500px;
 }
 
 .hero button{
-margin-top:20px;
-padding:12px 25px;
-background:#4C628F;
+margin-top:25px;
+padding:12px 26px;
 border:none;
-color:white;
 border-radius:6px;
+background:white;
+color:#4C628F;
+font-weight:600;
 }
 
 .hero img{
-width:350px;
+width:320px;
 }
 
-section{
-padding:80px;
+
+
+.section{
+padding:90px 80px;
 }
 
-.grid{
+.section.alt{
+background:#F3F4F6;
+}
+
+
+
+.section h2{
+font-family:Playfair Display;
+font-size:36px;
+margin-bottom:30px;
+}
+
+
+
+.card-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 }
 
 .card{
-background:#D9D9D9;
+background:white;
 padding:25px;
-border-radius:10px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,0.05);
 }
+
+
 
 .two-col{
 display:flex;
 align-items:center;
-gap:40px;
+gap:60px;
 }
 
-.timeline{
+
+
+.steps{
 display:flex;
-gap:20px;
 flex-wrap:wrap;
+gap:20px;
 }
 
 .step{
 background:#8C9BB2;
 padding:20px;
-border-radius:8px;
+border-radius:10px;
+color:white;
 }
+
+
 
 .team{
 display:flex;
@@ -91,7 +147,8 @@ gap:20px;
 .member{
 background:#8C9BB2;
 padding:20px;
-border-radius:8px;
+border-radius:10px;
 flex:1;
 text-align:center;
+color:white;
 }
