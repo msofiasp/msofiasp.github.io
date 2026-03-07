@@ -408,3 +408,8 @@ backdrop-filter:blur(4px);
 .hero-badge{
 margin-bottom:18px;
 }
+
+.icon{
+font-size:20px;
+margin-right:10px;
+}
