@@ -38,9 +38,22 @@ list-style:none;
 }
 
 .navbar a{
-text-decoration:none;
-color:#4C628F;
-font-weight:500;
+position:relative;
+}
+
+.navbar a::after{
+content:"";
+position:absolute;
+bottom:-5px;
+left:0;
+width:0;
+height:2px;
+background:#4C628F;
+transition:width 0.3s ease;
+}
+
+.navbar a:hover::after{
+width:100%;
 }
 
 
@@ -57,6 +70,8 @@ background:linear-gradient(
 #4C628F 100%
 );
 color:white;
+background-size:200% 200%;
+animation:gradientShift 12s ease infinite;
 }
 
 .hero h1{
@@ -78,17 +93,18 @@ max-width:500px;
 margin-top:25px;
 padding:14px 28px;
 border:none;
-border-radius:8px;
+border-radius:10px;
 background:white;
 color:#4C628F;
 font-weight:600;
 cursor:pointer;
-transition:all 0.25s ease;
+transition:all 0.3s ease;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
 .hero button:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 20px rgba(0,0,0,0,15);
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(0,0,0,0.2);
 }
 
 .hero img{
@@ -181,28 +197,39 @@ background:linear-gradient(
 color:white;
 position:relative;
 overflow:hidden;
+background-size:200% 200%;
+animation:gradientShift 12s ease infinite;
 }
 
 .hero-shape{
 position:absolute;
 border-radius:50%;
-opacity:0.2;
+opacity:0.15;
+animation:float 8s ease-in-out infinite;
 }
 
 .shape1{
-width:300px;
-height:300px;
+width:320px;
+height:320px;
 background:white;
 top:-80px;
 right:-60px;
+animation-delay:0s;
 }
 
 .shape2{
-width:200px;
-height:200px;
+width:220px;
+height:220px;
 background:white;
-bottom:-50px;
+bottom:-60px;
 left:40%;
+animation-delay:3s;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0px);}
 }
 
 .card{
@@ -214,13 +241,16 @@ transition:transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover{
-transform:translateY(-6px);
-box-shadow:0 20px 30px rgba(0,0,0,0.1);
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 25px 40px rgba(0,0,0,0.12);
 }
 
 .card,
 .step,
-.member{
+.member,
+.timeline-step,
+.dataset-card,
+.question-card{
 opacity:0;
 transform:translateY(30px);
 transition:all 0.6s ease;
@@ -428,6 +458,22 @@ font-size:20px;
 margin-right:10px;
 }
 
+.hero-right{
+position:relative;
+}
+
+.hero-right::before{
+content:"";
+position:absolute;
+width:350px;
+height:350px;
+background:radial-gradient(circle,#ffffff40,transparent);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
 .section-divider{
 width:80px;
 height:3px;
@@ -464,4 +510,10 @@ line-height:1.8;
 
 .references-list p{
 margin-bottom:20px;
+}
+
+@keyframes gradientShift{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
