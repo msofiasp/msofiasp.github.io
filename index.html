@@ -461,6 +461,56 @@ and uploaded to Google Sheets for further analysis.
 
 </div>
 
+<h2 class="section-title">Exploratory Data Analysis</h2>
+<div>
+
+<p>
+During exploratory data analysis, key considerations were made in interpreting and preparing the data. First, the <b>overVotes</b> variable represents the number of excess selections rather than the number of voters who overvoted. This means that a single voter can contribute multiple overvotes if they select more candidates than allowed, resulting in values that may exceed the number of voters in a precinct.
+</p>
+
+<p>
+Second, precincts with an <b>errorRate greater than 1</b> were excluded from certain visualizations and analyses. These cases occur when the number of excess selections exceeds the total number of voters, indicating multiple invalid selections per voter on average. Such values reflect extreme error intensity rather than typical voting behavior and can distort the overall distribution. Therefore, they were removed to improve interpretability while preserving the meaningful patterns in the data.
+</p>
+
+</div>
+
+<h3 class="subheading">Research Question 1: Ballot Error Rates Differences Across Philippine Regions</h3>
+
+<iframe src="plots/rq1.html" class="plot-frame"></iframe>
+
+<p>
+Ballot error rates differ significantly across Philippine regions, indicating regional variation in voting behavior and ballot handling.
+</p>
+
+<h3 class="subheading">Research Question 2: Ballot Error Rates Differences Between Senate and Party-list</h3>
+
+<iframe src="plots/rq2.html" class="plot-frame"></iframe>
+
+<p>
+Senatorial ballots consistently exhibit higher error rates compared to party-list ballots, suggesting that ballot complexity increases the likelihood of voting errors.
+
+</p>
+
+<h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
+
+<iframe src="plots/rq3.html" class="plot-frame"></iframe>
+
+<p>
+<p>
+This plot examines whether precinct size is associated with ballot error rates. Most precincts cluster within a similar range of registered voters, reflecting standardized precinct sizes in the electoral system. Although a slight upward trend may be observed, the relationship is weak because the data points are widely scattered across all levels of registered voters. For any given precinct size, there is a broad range of error rates, indicating no consistent pattern. This suggests that precinct size alone does not strongly influence voting errors. 
+
+Note: The vertical clustering of points is due to many precincts having similar range of voter counts per precinct. While some outliers exceed 1,000 voters, the majority of precincts fall below 1000, resulting to a dense concentration of observations rather than a limitation or error in data.
+</p>
+</p>
+
+<h3 class="subheading">Summary (Nutshell Plot)</h3>
+
+<iframe src="plots/nutshell.html" class="plot-frame"></iframe>
+
+<p>
+Across all regions, senatorial ballots consistently show higher error rates than party-list ballots, while the number of registered voters has little practical impact on ballot errors.
+</p>
+
 </section>
 
 <div class="section-divider"></div>
