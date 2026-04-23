@@ -167,6 +167,14 @@ text-align:center;
 color:white;
 }
 
+.about-text {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-align: center;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
 .hero{
 display:flex;
 align-items:center;
