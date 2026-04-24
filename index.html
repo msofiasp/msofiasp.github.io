@@ -521,7 +521,10 @@ of registered voters. For any given precinct size, there is a broad range of err
 
 </p>
 <p>
-Note: OAV and LAV precincts were excluded due to their non-standard and aggregated voter counts, which could distort the analysis. Only regular precincts were included for consistency.
+Note: OAV and LAV precincts were excluded due to their non-standard and aggregated voter counts, which could distort the analysis. Only regular precincts were included for consistency. In addition, an
+error rate of 100% does not mean that all voters made errors. Instead, it indicates that the total number of excess selections (overvotes) is equal to the number of voters in that precinct. Since the 
+error rate is computed as overvotes divided by actual voters, a value of 1.0 (100%) means there is, on average, one excess vote per voter. This occurs because the overVotes variable counts the number 
+of extra selections beyond the allowed limit, not the number of individuals who made errors. As a result, error rates reflect the intensity of voting errors rather than the proportion of voters who committed mistakes.
 </p>
 </p>
 
