@@ -476,7 +476,7 @@ Second, precincts with an <b>errorRate greater than 1</b> were excluded from cer
 
 <h3 class="subheading">Research Question 1: Ballot Error Rates Differences Across Philippine Regions</h3>
 
-<iframe src="plots/rq1.html" class="plot-frame"></iframe>
+<iframe src="plots/RQ1_ProjectPlot.html" class="plot-frame"></iframe>
 
 <p>
 Ballot error rates differ significantly across Philippine regions, indicating regional variation in voting behavior and ballot handling.
@@ -484,7 +484,7 @@ Ballot error rates differ significantly across Philippine regions, indicating re
 
 <h3 class="subheading">Research Question 2: Ballot Error Rates Differences Between Senate and Party-list</h3>
 
-<iframe src="plots/rq2.html" class="plot-frame"></iframe>
+<iframe src="plots/RQ2_ProjectPlot.html" class="plot-frame"></iframe>
 
 <p>
 Senatorial ballots consistently exhibit higher error rates compared to party-list ballots, suggesting that ballot complexity increases the likelihood of voting errors.
@@ -493,7 +493,7 @@ Senatorial ballots consistently exhibit higher error rates compared to party-lis
 
 <h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
 
-<iframe src="plots/rq3.html" class="plot-frame"></iframe>
+<iframe src="plots/RQ3_ProjectPlot.html" class="plot-frame"></iframe>
 
 <p>
 <p>
@@ -529,45 +529,50 @@ Due to this non-normality and the presence of outliers, non-parametric statistic
 
 <iframe src="plots/curve_distribution.html" class="plot-frame"></iframe>
 
-<h3 class="subheading">Research Question 1: Differences Across Regions</h3>
+<div class='two-col'>
+    <div>
+        <h3 class="subheading">Research Question 1: Differences Across Regions</h3>
 
-<p><b>Null Hypothesis (H₀):</b> There are no significant differences in ballot error rates across Philippine regions.</p>
+        <p><b>Null Hypothesis (H₀):</b> There are no significant differences in ballot error rates across Philippine regions.</p>
 
-<p><b>Alternative Hypothesis (H₁):</b> There are statistically significant differences in ballot error rates across Philippine regions.</p>
+        <p><b>Alternative Hypothesis (H₁):</b> There are statistically significant differences in ballot error rates across Philippine regions.</p>
 
-<p>
-A Kruskal–Wallis test was conducted to examine whether ballot error rates differ across Philippine regions. 
-The results indicate a statistically significant difference in error rates between regions 
-(H = 9522.00, p < 0.001). Therefore, the null hypothesis is rejected. This suggests that 
-regional factors may influence voting errors, such as differences in voter behavior, ballot handling, 
-or election administration practices.
-</p>
+        <p>
+        A Kruskal–Wallis test was conducted to examine whether ballot error rates differ across Philippine regions. The results indicate a statistically 
+        significant difference in error rates between regions (H = 9450.76, p < 0.001). Therefore, the null hypothesis is rejected. This suggests that 
+        regional factors may influence voting errors, such as differences in voter behavior, ballot handling, or election administration practices.
+        </p>
 
-<h3 class="subheading">Research Question 2: Senate vs Party-list</h3>
+        <h3 class="subheading">Research Question 2: Senate vs Party-list</h3>
 
-<p><b>Null Hypothesis (H₀):</b> There is no significant difference in ballot error rates between senatorial and party-list ballots.</p>
+        <p><b>Null Hypothesis (H₀):</b> There is no significant difference in ballot error rates between senatorial and party-list ballots.</p>
 
-<p>
-A Mann–Whitney U test was performed to compare ballot error rates between senatorial and party-list ballots. 
-The results show a statistically significant difference between the two ballot types 
-(U = 8.35 × 10⁹, p < 0.001). Therefore, the null hypothesis is rejected. Senatorial ballots exhibit higher error rates, 
-suggesting that greater ballot complexity increases the likelihood of voting errors.
-</p>
+        <p><b>Alternative Hypothesis (H₁):</b> Ballot error rates are significantly higher in multi-candidate senatorial ballots compared to party-list ballots.</p>
 
-<p><b>Alternative Hypothesis (H₁):</b> Ballot error rates are significantly higher in multi-candidate senatorial ballots compared to party-list ballots.</p>
+        <p>
+        A Mann–Whitney U test was performed to compare ballot error rates between senatorial and party-list ballots. The results show a statistically significant
+        difference between the two ballot types (U = 8.32 × 10⁹, p < 0.001). Therefore, the null hypothesis is rejected. Senatorial ballots exhibit higher error rates, 
+        suggesting that greater ballot complexity increases the likelihood of voting errors.
+        </p>
 
-<h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
 
-<p><b>Null Hypothesis (H₀):</b> There is no significant association between the number of registered voters per precinct and ballot error rates.</p>
+        <h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
 
-<p><b>Alternative Hypothesis (H₁):</b> The number of registered voters per precinct is significantly associated with ballot error rates.</p>
+        <p><b>Null Hypothesis (H₀):</b> There is no significant association between the number of registered voters per precinct and ballot error rates.</p>
 
-<p>
-A Spearman rank correlation was used to assess the relationship between the number of registered voters 
-and ballot error rates. The analysis revealed a weak positive correlation (ρ = 0.103, p < 0.001). 
-Therefore, the null hypothesis is rejected. However, the strength of the relationship is very weak, 
-indicating that precinct size has minimal practical effect on voting errors.
-</p>
+        <p><b>Alternative Hypothesis (H₁):</b> The number of registered voters per precinct is significantly associated with ballot error rates.</p>
+
+        <p>
+        A Spearman rank correlation was used to assess the relationship between the number of registered voters and ballot error rates. The analysis revealed a weak
+        positive correlation (ρ = 0.104, p < 0.001). Therefore, the null hypothesis is rejected. However, the strength of the relationship is very weak, indicating
+        that precinct size has minimal practical effect on voting errors.
+        </p>
+    </div>
+    <div>
+        <img src="hypotheses_test_results.png" class="result-img">
+    </div>
+</div>
+
 
 <div class="section-divider"></div>
   
