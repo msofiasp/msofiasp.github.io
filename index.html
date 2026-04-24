@@ -512,19 +512,25 @@ Senatorial ballots consistently exhibit higher error rates compared to party-lis
 
 <p>
 <p>
-This plot examines whether precinct size is associated with ballot error rates. Most precincts cluster within a similar range of registered voters, reflecting standardized precinct sizes in the electoral system. Although a slight upward trend may be observed, the relationship is weak because the data points are widely scattered across all levels of registered voters. For any given precinct size, there is a broad range of error rates, indicating no consistent pattern. This suggests that precinct size alone does not strongly influence voting errors. 
+This plot examines whether precinct size is associated with ballot error rates. Most precincts cluster within a similar range of registered voters, reflecting standardized 
+precinct sizes in the electoral system. Although a slight upward trend may be observed, the relationship is weak because the data points are widely scattered across all levels 
+of registered voters. For any given precinct size, there is a broad range of error rates, indicating no consistent pattern. This suggests that precinct size alone does not strongly influence voting errors. 
 
-Note: The vertical clustering of points is due to many precincts having similar range of voter counts per precinct. While some outliers exceed 1,000 voters, the majority of precincts fall below 1000, resulting to a dense concentration of observations rather than a limitation or error in data.
+Note: The vertical clustering of points is due to many precincts having similar range of voter counts per precinct. While some outliers exceed 1,000 voters, the majority of precincts fall below 1000, 
+resulting to a dense concentration of observations rather than a limitation or error in data.
 </p>
 </p>
 
 <section id="nutshell" class="section"></section>
 <h2 class="subheading">Summary (Nutshell Plot)</h2>
+<h3 class="subheading"> Senatorial Ballots Consistently Show Higher Error Rates</h3>
 
 <iframe src="plots/nutshell.html" class="plot-frame"></iframe>
 
 <p>
-This figure compares average ballot error rates for senatorial and party-list ballots across Philippine regions in the 2025 Midterm Elections. Across all regions, senatorial ballots have higher error rates than party-list ballots. Party-list error rates are generally low and similar across regions, while senatorial error rates are higher and vary more. The prominent pattern is that senatorial ballots consistently result in more errors. This suggests that the type of ballot, especially those with more candidates like the senatorial ballot, may affect how often voters make errors.
+This figure compares average ballot error rates for senatorial and party-list ballots across Philippine regions in the 2025 Midterm Elections. Across all regions, senatorial ballots have higher
+ error rates than party-list ballots. Party-list error rates are generally low and similar across regions, while senatorial error rates are higher and vary more. The prominent pattern is that 
+ senatorial ballots consistently result in more errors. This suggests that the type of ballot, especially those with more candidates like the senatorial ballot, may affect how often voters make errors.
 </p>
 
 </section>
@@ -536,11 +542,18 @@ This figure compares average ballot error rates for senatorial and party-list ba
 <h3 class="subheading">Choice of Statistical Methods</h3>
 
 <p>
-Before conducting hypothesis testing, the distribution of ballot error rates was examined using a histogram with a kernel density estimate (KDE). The distribution is highly right-skewed, with a concentration of low error rates and a long tail of extreme values. This indicates that the data do not follow a normal distribution.
+Before conducting hypothesis testing, the distribution of ballot error rates was examined using a histogram with a kernel density estimate (KDE). The distribution is highly right-skewed, 
+with a concentration of low error rates and a long tail of extreme values. This indicates that the data do not follow a normal distribution.
 </p>
 
 <p>
-Due to this non-normality and the presence of outliers, non-parametric statistical tests were used for analysis. These methods do not assume normality and are more appropriate for skewed distributions, ensuring more robust and reliable results.
+Due to this non-normality and the presence of outliers, non-parametric statistical tests were used for analysis. These methods do not assume normality and are more appropriate for 
+skewed distributions, ensuring more robust and reliable results.
+</p>
+
+<p>
+As a result, the findings from hypothesis testing were interpreted not only based on statistical significance but also on the magnitude of the observed effects. This is 
+particularly important given the large sample size, where even weak relationships may appear statistically significant.
 </p>
 
 <iframe src="plots/curve_distribution.html" class="plot-frame"></iframe>
