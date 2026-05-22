@@ -89,21 +89,26 @@
       </div>
 
       <h3 class="sub-title reveal">Research Questions</h3>
-      <p>
-      This study aims to analyze ballot error rates in the 2025 Philippine Midterm Elections using
-      precinct-level electoral data. Specifically, the research investigates three key questions
-      related to factors that may influence ballot errors. First, the study examines whether ballot
-      error rates differ significantly across Philippine regions. Second, it investigates whether
-      ballots with multiple candidates, such as senatorial ballots, produce higher error rates
-      compared to party-list ballots. Third, the study analyzes whether the number of registered
-      voters in a precinct is associated with ballot error rates.
-      </p>
-      <p>
-      To address these questions, the study will conduct statistical analyses using a large election
-      dataset containing precinct-level information. These analyses include descriptive statistics,
-      hypothesis testing, and regression models to examine relationships between ballot design,
-      precinct characteristics, and ballot error rates.
-      </p>
+      
+      <div class="info-callout reveal">
+          <p>
+          This study aims to analyze ballot error rates in the 2025 Philippine Midterm Elections using
+          precinct-level electoral data. Specifically, the research investigates three key questions
+          related to factors that may influence ballot errors. First, the study examines whether ballot
+          error rates differ significantly across Philippine regions. Second, it investigates whether
+          ballots with multiple candidates, such as senatorial ballots, produce higher error rates
+          compared to party-list ballots. Third, the study analyzes whether the number of registered
+          voters in a precinct is associated with ballot error rates.
+          </p>
+          
+          <p>
+          To address these questions, the study will conduct statistical analyses using a large election
+          dataset containing precinct-level information. These analyses include descriptive statistics,
+          hypothesis testing, and regression models to examine relationships between ballot design,
+          precinct characteristics, and ballot error rates.
+          </p>
+        </div>
+      
       <div class="card-grid reveal">
         <div class="rq-card">
           <span class="rq-num">Q1</span>
@@ -123,20 +128,22 @@
       </div>
 
       <h3 class="sub-title reveal">Hypotheses</h3>
-      <p>
-      Based on the research questions, the study proposes several hypotheses regarding the
-      relationships between ballot characteristics, precinct demographics, and voting errors.
-      The study hypothesizes that ballot error rates vary significantly across Philippine regions,
-      that senatorial ballots with multiple candidates exhibit higher error rates than party-list
-      ballots, and that the number of registered voters per precinct is significantly associated
-      with ballot error rates.
-      </p>
-      
-      <p>
-      By testing these hypotheses using statistical methods, the research aims to identify factors
-      that contribute to ballot errors and provide evidence-based insights that may support
-      improvements in ballot design, voter education, and election management processes.
-      </p>
+      <div class="info-callout reveal">
+          <p>
+          Based on the research questions, the study proposes several hypotheses regarding the
+          relationships between ballot characteristics, precinct demographics, and voting errors.
+          The study hypothesizes that ballot error rates vary significantly across Philippine regions,
+          that senatorial ballots with multiple candidates exhibit higher error rates than party-list
+          ballots, and that the number of registered voters per precinct is significantly associated
+          with ballot error rates.
+          </p>
+          
+          <p>
+          By testing these hypotheses using statistical methods, the research aims to identify factors
+          that contribute to ballot errors and provide evidence-based insights that may support
+          improvements in ballot design, voter education, and election management processes.
+          </p>
+        </div>
       <div class="card-grid reveal">
         <div class="hyp-card">
           <span class="hyp-label">H₁</span>
@@ -184,9 +191,24 @@
       <div class="two-col reveal">
         <div>
           <h3>Dataset Description</h3>
-          <p>This project uses two 2025 Philippine Midterm Election datasets containing precinct-level electoral data — registered voters, actual voters, overvotes, undervotes, valid votes, and vote counts per candidate for senatorial and party-list races.</p>
-          <p>The senate dataset contained 92,822 rows and 78 columns; the party-list, 92,822 rows and 167 columns. Seventy-seven precincts with zero voters were removed, resulting in <strong>92,745 rows</strong>.</p>
-
+          <p>
+          This project will utilize the two 2025 Philippine Midterm Elections datasets.
+          They contain precinct-level electoral data, including the number of registered
+          voters, actual voters, overvotes, undervotes, valid votes, and vote counts per
+          candidate for senatorial and party-lists.
+          </p>
+          
+          <p>
+          These include overseas (OAV) and local absentee voting (LAV).
+          </p>
+          
+          <p>
+          The senate results contained 92,822 rows (0 to 92,821) and 78 columns,
+          while the partylist results contained 92,822 rows and 167 columns.
+          However, 77 precincts with zero voters were removed to avoid undefined
+          ballot error rate calculations, resulting in 92,745 rows.
+          </p>
+          
           <h3 style="margin-top: 2rem;">Dataset Repository</h3>
           <p>Full datasets (Google Sheets XLSX) are available below:</p>
           <div class="btn-group" style="margin-top:1rem;">
@@ -200,8 +222,26 @@
       </div>
 
       <h3 class="sub-title reveal">Data Collection Process</h3>
-      <p class="reveal">The datasets were published by Vianney Tumbagahan on Figshare using a scraping script by Prof. Christian Alis (AIM). Version 2 was used, updated to account for 23 missing election returns. No sampling was applied — the dataset contains complete precinct records.</p>
-
+      <div class="info-callout reveal">
+          <p>
+          The datasets were published by Vianney Tumbagahan on Figshare using the
+          scraping script created by Professor Christian Alis, a Senior Data Scientist
+          at the Asian Institute of Management. These datasets are originally sourced
+          from the Commission on Elections (COMELEC) website.
+          </p>
+          
+          <p>
+          For transparency, since May 21, 2025, the dataset has been updated to
+          account for 23 missing election returns due to a bug with the scraping script.
+          Fourteen were from Philippine results and nine from overseas absentee voting.
+          </p>
+          
+          <p>
+          Version 2 of the dataset was used for this project. No sampling was applied
+          because the dataset already contains the complete records of precinct results
+          for the 2025 Midterm Elections.
+          </p>
+        </div>
       <div class="pipeline reveal">
         <div class="pipe-step">
           <img src="public/images/comelec.svg" alt="">
@@ -295,7 +335,26 @@
       </div>
 
       <div class="info-callout reveal">
-        <p>Key notes: <strong>overVotes</strong> counts excess selections — one voter can contribute multiple overvotes. Precincts with error rate &gt; 1 were excluded from visualizations. OAV and LAV precincts were also excluded due to non-standard sizes.</p>
+        <p>
+        During exploratory data analysis, key considerations were made in interpreting and preparing the data.
+        First, the <b>overVotes</b> variable represents the number of excess selections rather than the number of voters who overvoted. 
+        This means that a single voter can contribute multiple overvotes if they select more candidates than allowed, resulting in values 
+        that may exceed the number of voters in a precinct.
+        </p>
+    
+        <p>
+        Second, precincts with an <b>errorRate greater than 1</b> were excluded from certain visualizations and analyses. These cases occur when the 
+        number of excess selections exceeds the total number of voters, indicating multiple invalid selections per voter on average. Such values 
+        reflect extreme error intensity rather than typical voting behavior and can distort the overall distribution. Therefore, they were removed 
+        to improve interpretability while preserving the meaningful patterns in the data.
+        </p>
+    
+        <p>
+        Lastly, overseas Absentee Voting (OAV) and Local Absentee Voting (LAV) precincts were excluded from the analysis. These voting categories differ 
+        structurally from regular precincts in terms of voter composition, turnout behavior, and ballot handling procedures. In particular, OAV and LAV 
+        often involve aggregated or non-standard precinct sizes, which can introduce extreme or non-comparable values (unusually large numbers of registered voters). 
+        To ensure consistency and comparability across precinct-level analyses, only standard in-country precinct data were retained.
+        </p>
       </div>
 
       <div class="plot-section reveal">
