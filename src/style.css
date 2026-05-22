@@ -152,7 +152,7 @@ strong { font-weight: 600; }
   font-size: 1.1rem;
   text-decoration: none;
 }
-.nav-logo img { height: 36px; width: auto; }
+.nav-logo img { height: 48px; width: auto; }
 
 .nav-links {
   display: flex;
