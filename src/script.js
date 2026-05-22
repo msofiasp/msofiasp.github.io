@@ -1,71 +1,117 @@
-function scrollToOverview(){
+/* ═══════════════════════════════════════════
+   Ballot Blunders — script.js
+═══════════════════════════════════════════ */
 
-document.getElementById("overview").scrollIntoView({
-behavior:"smooth"
-})
-
+// ── SCROLL-TO HELPER ──
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// ── NAVBAR: scroll shadow + active link ──
+(function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  const links  = document.querySelectorAll('.nav-links a');
 
-const counters = document.querySelectorAll(".counter");
-let started = false;
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    highlightNav();
+  }, { passive: true });
 
-function runCounters(){
+  function highlightNav() {
+    let current = '';
+    document.querySelectorAll('section[id]').forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}`
+        ? 'var(--white)'
+        : '';
+    });
+  }
+})();
 
-if(started) return;
+// ── MOBILE MENU TOGGLE ──
+(function initMobileMenu() {
+  const toggle = document.getElementById('navToggle');
+  const menu   = document.getElementById('navLinks');
+  if (!toggle || !menu) return;
 
-const section = document.querySelector("#data");
-const sectionTop = section.getBoundingClientRect().top;
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+  });
 
-if(sectionTop < window.innerHeight - 100){
+  // Close on link click
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => menu.classList.remove('open'));
+  });
+})();
 
-started = true;
+// ── COUNTER ANIMATION ──
+(function initCounters() {
+  const counters = document.querySelectorAll('.counter');
+  if (!counters.length) return;
 
-counters.forEach(counter => {
+  const ease = t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
-const target = +counter.getAttribute("data-target");
-let count = 0;
+  function animateCounter(el) {
+    const target   = parseInt(el.dataset.target, 10);
+    const duration = 1600;
+    const start    = performance.now();
 
-const duration = 1500;
-const stepTime = 10;
-const steps = duration / stepTime;
-const increment = target / steps;
+    function tick(now) {
+      const elapsed  = Math.min(now - start, duration);
+      const progress = ease(elapsed / duration);
+      el.textContent = Math.round(progress * target).toLocaleString();
+      if (elapsed < duration) requestAnimationFrame(tick);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(tick);
+  }
 
-const update = () => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
 
-count += increment;
+  counters.forEach(c => obs.observe(c));
+})();
 
-if(count < target){
+// ── SCROLL REVEAL ──
+(function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
 
-counter.innerText = Math.floor(count).toLocaleString();
-setTimeout(update, stepTime);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger siblings slightly
+        const siblings = entry.target.parentElement
+          ? [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')]
+          : [];
+        const delay = siblings.indexOf(entry.target) * 80;
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-}else{
+  els.forEach(el => obs.observe(el));
+})();
 
-counter.innerText = target.toLocaleString();
-
-}
-
-};
-
-update();
-
+// ── SMOOTH ANCHOR LINKS ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 });
-
-}
-
-}
-
-window.addEventListener("scroll", runCounters);
-
-});
-
-function showDataset(num){
-
-document.getElementById("dataset1").style.display="none";
-document.getElementById("dataset2").style.display="none";
-
-document.getElementById("dataset"+num).style.display="block";
-
-}
