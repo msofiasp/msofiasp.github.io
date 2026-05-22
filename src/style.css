@@ -146,13 +146,13 @@ strong { font-weight: 600; }
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: .6rem;
+  gap: .8rem;
   color: #ffffff;
   font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   text-decoration: none;
 }
-.nav-logo img { height: 48px; width: auto; }
+.nav-logo img { height: 72px; width: auto; }
 
 .nav-links {
   display: flex;
