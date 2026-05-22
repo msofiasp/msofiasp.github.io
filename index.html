@@ -1,876 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Ballot Blunders:A Statistical Analysis of Ballot Error Rates in the 2025 Philippine Midterm Elections</title>
-
-<link rel="stylesheet" href="src/style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ballot Blunders — 2025 Philippine Midterm Elections Analysis</title>
+  <link rel="stylesheet" href="src/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<nav class="navbar">
-
-<div class="logo">
-  
-<img src="public/images/logo.svg">
-
-</div>
-
-<ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#data">Data Collection</a></li>
-<li><a href="#analysis">Data Preprocessing</a></li>
-<li><a href="#EDA">Exploratory Data Analysis</a></li>
-<li><a href="#nutshell">Nutshell</a></li>
-<li><a href="#discussion">Discussion</a></li>
-<li><a href="#ml">ML Modelling</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-<li><a href="#about">About Us</a></li>
-</ul>
-
-</nav>
-
-
-
-<section class="hero">
-
-<div class="hero-left">
-
-<h1>Ballot Blunders</h1>
-
-<h2>
-A Statistical Analysis of Ballot Error Rates in the  
-2025 Philippine Midterm Elections
-</h2>
-
-<div class="hero-badge">
-SDG 16 • Data Science Research Project
-</div>
-  
-<p>
-Understanding voting errors to support transparent and reliable elections.
-</p>
-
-<button onclick="scrollToOverview()">Explore Study</button>
-
-</div>
-
-<div class="hero-right">
-
-<img src="public/images/election.svg">
-
-</div>
-
-<div class="hero-shape shape1"></div>
-<div class="hero-shape shape2"></div>
-  
-</section>
-
-
-
-<section id="overview" class="section">
-
-<h2 class="section-title">Overview</h2>
-
-<div class="divider"></div>
-
-<h3 class="subheading">Background</h3>
-
-<div class="text-block">
-
-<p>
-Ensuring fair and reliable elections is essential for achieving the goals of SDG 16: Peace,
-Justice, and Strong Institutions. However, ballot errors such as overvotes and undervotes can
-affect the accuracy of election results and may indicate issues in ballot design, voter
-understanding, or precinct-level election management.
-</p>
-
-<p>
-Previous research has shown that ballot characteristics, including length and number of
-candidates, significantly influence the likelihood of voting errors (Pachón et al., 2017;
-Bernardo et al., 2021). Understanding patterns in ballot error rates can therefore help
-identify whether certain factors contribute to these errors and improve electoral integrity.
-</p>
-
-</div>
-
-
-
-<div class="highlight-box">
-
-<h3>Research Focus</h3>
-
-<p>
-This study analyzes ballot error rates in the 2025 Philippine Midterm Elections using
-precinct-level electoral data.
-</p>
-
-</div>
-
-
-<h3 class="subheading">Research Questions</h3>
-
-<div class="description-block">
-
-<p>
-This study aims to analyze ballot error rates in the 2025 Philippine Midterm Elections using
-precinct-level electoral data. Specifically, the research investigates three key questions
-related to factors that may influence ballot errors. First, the study examines whether ballot
-error rates differ significantly across Philippine regions. Second, it investigates whether
-ballots with multiple candidates, such as senatorial ballots, produce higher error rates
-compared to party-list ballots. Third, the study analyzes whether the number of registered
-voters in a precinct is associated with ballot error rates.
-</p>
-
-<p>
-To address these questions, the study will conduct statistical analyses using a large election
-dataset containing precinct-level information. These analyses include descriptive statistics,
-hypothesis testing, and regression models to examine relationships between ballot design,
-precinct characteristics, and ballot error rates.
-</p>
-
-</div>
-
-
-
-<div class="question-grid">
-
-<div class="question-card">
-<span class="icon">📍</span>
-Are ballot error rates significantly different across Philippine regions?
-</div>
-
-<div class="question-card">
-<span class="icon">🗳️</span>
-Are ballot error rates higher in multi-candidate senatorial ballots compared to party-list ballots?
-</div>
-
-<div class="question-card">
-<span class="icon">👥</span>
-Does the number of registered voters per precinct influence ballot error rates?
-</div>
-
-</div>
-
-
-<h3 class="subheading">Hypotheses</h3>
-
-<div class="description-block">
-
-<p>
-Based on the research questions, the study proposes several hypotheses regarding the
-relationships between ballot characteristics, precinct demographics, and voting errors.
-The study hypothesizes that ballot error rates vary significantly across Philippine regions,
-that senatorial ballots with multiple candidates exhibit higher error rates than party-list
-ballots, and that the number of registered voters per precinct is significantly associated
-with ballot error rates.
-</p>
-
-<p>
-By testing these hypotheses using statistical methods, the research aims to identify factors
-that contribute to ballot errors and provide evidence-based insights that may support
-improvements in ballot design, voter education, and election management processes.
-</p>
-
-</div>
-
-
-
-<div class="question-grid">
-
-<div class="question-card">
-<span class="icon">📊</span>
-Ballot error rates differ significantly across Philippine regions.
-</div>
-
-<div class="question-card">
-<span class="icon">🗳️</span>
-Senatorial ballots with multiple candidates will exhibit higher error rates than party-list ballots.
-</div>
-
-<div class="question-card">
-<span class="icon">👥</span>
-The number of registered voters per precinct is significantly associated with ballot error rates.
-</div>
-
-</div>
-
-<div class="section-divider"></div>
-
-<section id="data" class="section alt">
-
-<h2 class="section-title">Data Collection</h2>
-
-<div class="divider"></div>
-
-<div class="stats">
-
-<div class="stat">
-<h3 class="counter" data-target="92745">0</h3>
-<p>Precinct Records</p>
-</div>
-
-<div class="stat">
-<h3 class="counter" data-target="2">0</h3>
-<p>Datasets</p>
-</div>
-
-<div class="stat">
-<h3 class="counter" data-target="78">0</h3>
-<p>Senate Columns</p>
-</div>
-
-<div class="stat">
-<h3 class="counter" data-target="167">0</h3>
-<p>Partylist Columns</p>
-</div>
-
-</div>
-
-
-<div class="dataset-cards">
-
-<div class="dataset-card">
-<h3>Rows</h3>
-<p>92,822 original rows</p>
-</div>
-
-<div class="dataset-card">
-<h3>Columns</h3>
-<p>78 (senate) • 167 (partylist)</p>
-</div>
-
-<div class="dataset-card">
-<h3>Final Dataset</h3>
-<p>92,745 precincts</p>
-</div>
-
-</div>
-
-
-
-<div class="two-col">
-
-<div>
-
-<h3 class="subheading">Dataset Description</h3>
-
-<p>
-This project will utilize the two 2025 Philippine Midterm Elections datasets.
-They contain precinct-level electoral data, including the number of registered
-voters, actual voters, overvotes, undervotes, valid votes, and vote counts per
-candidate for senatorial and party-lists.
-</p>
-
-<p>
-These include overseas (OAV) and local absentee voting (LAV).
-</p>
-
-<p>
-The senate results contained 92,822 rows (0 to 92,821) and 78 columns,
-while the partylist results contained 92,822 rows and 167 columns.
-However, 77 precincts with zero voters were removed to avoid undefined
-ballot error rate calculations, resulting in 92,745 rows.
-</p>
-
-</div>
-
-
-<div class="dataset-visual">
-
-<img src="public/images/data.svg">
-
-</div>
-
-</div>
-
-<h3 class="subheading">Dataset Repository</h3>
-
-<p>
-The datasets used in this study are available in the repository links below.
-These datasets (in Google Sheets XLSX due to file size) contain the precinct-level electoral records used in the analysis.
-</p>
-
-<div class="dataset-links">
-
-<a href="https://docs.google.com/spreadsheets/d/1WAgBq_4D8Ubl50wpnlpm6EGZ3DFVXrZR/edit?usp=sharing&ouid=106460850389607448654&rtpof=true&sd=true" target="_blank" class="dataset-btn">
-Dataset 1 – Senate Results
-</a>
-
-<a href="https://docs.google.com/spreadsheets/d/1sajKeBG35TOtopH56l5y0jnS1WtKRmAF/edit?usp=drivesdk&ouid=113079674400911362852&rtpof=true&sd=true" target="_blank" class="dataset-btn">
-Dataset 2 – Party-list Results
-</a>
-
-</div>
-
-<h3 class="subheading">Data Collection Process</h3
-
-<div class="text-block">                                              
-
-<p>
-The datasets were published by Vianney Tumbagahan on Figshare using the
-scraping script created by Professor Christian Alis, a Senior Data Scientist
-at the Asian Institute of Management. These datasets are originally sourced
-from the Commission on Elections (COMELEC) website.
-</p>
-
-<p>
-For transparency, since May 21, 2025, the dataset has been updated to
-account for 23 missing election returns due to a bug with the scraping script.
-Fourteen were from Philippine results and nine from overseas absentee voting.
-</p>
-
-<p>
-Version 2 of the dataset was used for this project. No sampling was applied
-because the dataset already contains the complete records of precinct results
-for the 2025 Midterm Elections.
-</p>
-
-</div>
-
-<h3 class="subheading">Data Processing Pipeline</h3>
-
-<div class="pipeline">
-
-<div class="pipe">
-<img src="public/images/comelec.svg">
-<p>COMELEC Data</p>
-</div>
-
-<div class="arrow">→</div>
-
-<div class="pipe">
-<img src="public/images/scrape.svg">
-<p>Scraping Script</p>
-</div>
-
-<div class="arrow">→</div>
-
-<div class="pipe">
-<img src="public/images/dataset.svg">
-<p>Election Dataset</p>
-</div>
-
-<div class="arrow">→</div>
-
-<div class="pipe">
-<img src="public/images/cleaning.svg">
-<p>Data Cleaning</p>
-</div>
-
-<div class="arrow">→</div>
-
-<div class="pipe">
-<img src="public/images/analysis.svg">
-<p>Statistical Analysis</p>
-</div>
-
-</div>
-  
-</section>
-
-  
-
-
-<section id="analysis" class="section">
-
-<h2 class="section-title">Data Preprocessing</h2>
-
-<div class="divider"></div>
-
-<h3 class="subheading">Steps Done During Preprocessing</h3>
-
-<div class="timeline">
-
-<div class="timeline-step">
-
-<h4>1. Dataset Inspection</h4>
-
-<p>
-The CSV files were loaded using the Python Pandas library.
-General information of both datasets was checked using the info() function.
-</p>
-
-</div>
-
-
-<div class="timeline-step">
-
-<h4>2. Duplicate Checks</h4>
-
-<p>
-The duplicated().sum() function was used to check for duplicates.
-No duplicate rows or duplicate machineID entries were found.
-</p>
-
-</div>
-
-
-<div class="timeline-step">
-
-<h4>3. Removal of Zero Voters</h4>
-
-<p>
-Rows with actualVoters = 0 (77 precincts) were removed
-to prevent division-by-zero errors when computing ballot error rates.
-</p>
-
-</div>
-
-
-<div class="timeline-step">
-
-<h4>4. Consistency Checks</h4>
-
-<p>
-All actual voters were verified to be less than or equal to registered voters.
-It was also confirmed that no precinct had zero registered voters.
-</p>
-
-</div>
-
-
-<div class="timeline-step">
-
-<h4>5. Rate Calculations</h4>
-
-<p>
-Turnout rate and ballot error rate were calculated using:
-(actualVoters / registeredVoters) and
-(overVotes) / actualVoters.
-</p>
-
-</div>
-
-
-<div class="timeline-step">
-
-<h4>6. Export</h4>
-
-<p>
-Cleaned datasets and region-level summaries were exported as CSV files
-and uploaded to Google Sheets for further analysis.
-</p>
-
-</div>
-
-</div>
-
-<section id="EDA" class="section">
-    <h2 class="section-title">Exploratory Data Analysis</h2>
-    <div>
-
-    <p>
-    During exploratory data analysis, key considerations were made in interpreting and preparing the data.
-    First, the <b>overVotes</b> variable represents the number of excess selections rather than the number of voters who overvoted. 
-    This means that a single voter can contribute multiple overvotes if they select more candidates than allowed, resulting in values 
-    that may exceed the number of voters in a precinct.
-    </p>
-
-    <p>
-    Second, precincts with an <b>errorRate greater than 1</b> were excluded from certain visualizations and analyses. These cases occur when the 
-    number of excess selections exceeds the total number of voters, indicating multiple invalid selections per voter on average. Such values 
-    reflect extreme error intensity rather than typical voting behavior and can distort the overall distribution. Therefore, they were removed 
-    to improve interpretability while preserving the meaningful patterns in the data.
-    </p>
-
-    <p>
-    Lastly, overseas Absentee Voting (OAV) and Local Absentee Voting (LAV) precincts were excluded from the analysis. These voting categories differ 
-    structurally from regular precincts in terms of voter composition, turnout behavior, and ballot handling procedures. In particular, OAV and LAV 
-    often involve aggregated or non-standard precinct sizes, which can introduce extreme or non-comparable values (unusually large numbers of registered voters). 
-    To ensure consistency and comparability across precinct-level analyses, only standard in-country precinct data were retained.
-    </p>
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="public/images/logo.svg" alt="Logo">
+      <span>Ballot Blunders</span>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#analysis">Preprocessing</a></li>
+      <li><a href="#EDA">EDA</a></li>
+      <li><a href="#discussion">Discussion</a></li>
+      <li><a href="#ml">ML Model</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
 
-    <h3 class="subheading">Research Question 1: Ballot Error Rates Differences Across Philippine Regions</h3>
-
-    <iframe src="plots/RQ1_ProjectPlot.html" class="plot-frame"></iframe>
-
-    <p>
-    Ballot error rates differ significantly across Philippine regions, indicating regional variation in voting behavior and ballot handling.
-    </p>
-
-    <h3 class="subheading">Research Question 2: Ballot Error Rates Differences Between Senate and Party-list</h3>
-
-    <iframe src="plots/RQ2_ProjectPlot.html" class="plot-frame"></iframe>
-
-    <p>
-    Senatorial ballots consistently exhibit higher error rates compared to party-list ballots, suggesting that ballot complexity increases the likelihood of voting errors.
-
-    </p>
-
-    <h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
-
-    <iframe src="plots/RQ3_ProjectPlot.html" class="plot-frame"></iframe>
-
-    <p>
-    <p>
-    This plot examines whether precinct size is associated with ballot error rates. Most precincts cluster within a similar range of registered voters, reflecting standardized 
-    precinct sizes in the electoral system. Although a slight upward trend may be observed, the relationship is weak because the data points are widely scattered across all levels 
-    of registered voters. For any given precinct size, there is a broad range of error rates, indicating no consistent pattern. This suggests that precinct size alone does not strongly influence voting errors. 
-    </p>
-
-
-    <p>
-    Note: OAV and LAV precincts were excluded due to their non-standard and aggregated voter counts, which could distort the analysis. Only regular precincts were included for consistency. In addition, an
-    error rate of 100% does not mean that all voters made errors. Instead, it indicates that the total number of excess selections (overvotes) is equal to the number of voters in that precinct. Since the 
-    error rate is computed as overvotes divided by actual voters, a value of 1.0 (100%) means there is, on average, one excess vote per voter. This occurs because the overVotes variable counts the number 
-    of extra selections beyond the allowed limit, not the number of individuals who made errors. As a result, error rates reflect the intensity of voting errors rather than the proportion of voters who committed mistakes.
-    </p>
-
-</section>
-
-
-
-<section id="nutshell" class="section">
-    <h2 class="subheading">Summary (Nutshell Plot)</h2>
-    <h3 class="subheading"> Senatorial Ballots Consistently Show Higher Error Rates</h3>
-
-    <iframe src="plots/nutshell.html" class="plot-frame"></iframe>
-
-    <p>
-    This figure compares average ballot error rates for senatorial and party-list ballots across Philippine regions in the 2025 Midterm Elections. Across all regions, senatorial ballots have higher
-    error rates than party-list ballots. Party-list error rates are generally low and similar across regions, while senatorial error rates are higher and vary more. The prominent pattern is that 
-    senatorial ballots consistently result in more errors. This suggests that the type of ballot, especially those with more candidates like the senatorial ballot, may affect how often voters make errors.
-    </p>
-
-    </section>
-
-    <div class="section-divider"></div>
-
-    <h2 class="section-title">Hypothesis Testing</h2>
-
-    <h3 class="subheading">Choice of Statistical Methods</h3>
-
-    <p>
-    Before conducting hypothesis testing, the distribution of ballot error rates was examined using a histogram with a kernel density estimate (KDE). The distribution is highly right-skewed, 
-    with a concentration of low error rates and a long tail of extreme values. This indicates that the data do not follow a normal distribution.
-    </p>
-
-    <p>
-    Due to this non-normality and the presence of outliers, non-parametric statistical tests were used for analysis. These methods do not assume normality and are more appropriate for 
-    skewed distributions, ensuring more robust and reliable results.
-    </p>
-
-    <p>
-    As a result, the findings from hypothesis testing were interpreted not only based on statistical significance but also on the magnitude of the observed effects. This is 
-    particularly important given the large sample size, where even weak relationships may appear statistically significant.
-    </p>
-</section>
-
-
-<iframe src="plots/curve_distribution.html" class="plot-frame"></iframe>
-
-<div class="divider"></div>
-
-<div class='two-col'>
-    <div>
-        <h3 class="subheading">Research Question 1: Differences Across Regions</h3>
-
-        <p><b>Null Hypothesis (H₀):</b> There are no significant differences in ballot error rates across Philippine regions.</p>
-
-        <p><b>Alternative Hypothesis (H₁):</b> There are statistically significant differences in ballot error rates across Philippine regions.</p>
-
-        <p>
-        A Kruskal–Wallis test was conducted to examine whether ballot error rates differ across Philippine regions. The results indicate a statistically 
-        significant difference in error rates between regions (H = 9450.76, p < 0.001). Therefore, the null hypothesis is rejected. This suggests that 
-        regional factors may influence voting errors, such as differences in voter behavior, ballot handling, or election administration practices.
-        </p>
-
-        <h3 class="subheading">Research Question 2: Senate vs Party-list</h3>
-
-        <p><b>Null Hypothesis (H₀):</b> There is no significant difference in ballot error rates between senatorial and party-list ballots.</p>
-
-        <p><b>Alternative Hypothesis (H₁):</b> Ballot error rates are significantly higher in multi-candidate senatorial ballots compared to party-list ballots.</p>
-
-        <p>
-        A Mann–Whitney U test was performed to compare ballot error rates between senatorial and party-list ballots. The results show a statistically significant
-        difference between the two ballot types (U = 8.32 × 10⁹, p < 0.001). Therefore, the null hypothesis is rejected. Senatorial ballots exhibit higher error rates, 
-        suggesting that greater ballot complexity increases the likelihood of voting errors.
-        </p>
-
-
-        <h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
-
-        <p><b>Null Hypothesis (H₀):</b> There is no significant association between the number of registered voters per precinct and ballot error rates.</p>
-
-        <p><b>Alternative Hypothesis (H₁):</b> The number of registered voters per precinct is significantly associated with ballot error rates.</p>
-
-        <p>
-        A Spearman rank correlation was used to assess the relationship between the number of registered voters and ballot error rates. The analysis revealed a weak
-        positive correlation (ρ = 0.104, p < 0.001). Therefore, the null hypothesis is rejected. However, the strength of the relationship is very weak, indicating
-        that precinct size has minimal practical effect on voting errors.
-        </p>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-dot-grid"></div>
     </div>
-    <div>
-        <img src="hypotheses_test_results.png" class="result-img">
+    <div class="hero-content">
+      <div class="hero-text fade-in">
+        <span class="hero-tag">SDG 16 · Data Science Research</span>
+        <h1>Ballot<br><em>Blunders</em></h1>
+        <p class="hero-sub">A statistical analysis of ballot error rates in the 2025 Philippine Midterm Elections — examining regional patterns, ballot complexity, and precinct-level factors.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="scrollTo('overview')">Explore Study</button>
+          <a href="#data" class="btn-ghost">View Dataset →</a>
+        </div>
+      </div>
+      <div class="hero-visual fade-in delay-2">
+        <img src="public/images/election.svg" alt="Election illustration">
+      </div>
     </div>
-</div>
+    <div class="hero-scroll-hint">scroll</div>
+  </section>
 
+  <!-- ── OVERVIEW ── -->
+  <section id="overview" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">01</span>
+        <h2>Overview</h2>
+      </div>
 
-<div class="section-divider"></div>
-  
+      <div class="two-col reveal">
+        <div>
+          <h3>Background</h3>
+          <p>Ensuring fair and reliable elections is essential for achieving SDG 16: Peace, Justice, and Strong Institutions. Ballot errors such as overvotes and undervotes affect election accuracy and may indicate issues in ballot design, voter understanding, or precinct-level management.</p>
+          <p>Previous research has shown that ballot characteristics — including length and number of candidates — significantly influence the likelihood of voting errors. Understanding these patterns can help improve electoral integrity.</p>
+        </div>
+        <div class="highlight-box reveal">
+          <div class="highlight-icon">🗳️</div>
+          <h3>Research Focus</h3>
+          <p>This study analyzes ballot error rates in the <strong>2025 Philippine Midterm Elections</strong> using precinct-level electoral data from 92,745 precincts nationwide.</p>
+        </div>
+      </div>
 
-<section id="discussion" class="section alt">
+      <h3 class="sub-title reveal">Research Questions</h3>
+      <div class="card-grid reveal">
+        <div class="rq-card">
+          <span class="rq-num">Q1</span>
+          <span class="rq-icon">📍</span>
+          <p>Are ballot error rates significantly different across Philippine regions?</p>
+        </div>
+        <div class="rq-card">
+          <span class="rq-num">Q2</span>
+          <span class="rq-icon">🗳️</span>
+          <p>Are ballot error rates higher in multi-candidate senatorial ballots vs. party-list?</p>
+        </div>
+        <div class="rq-card">
+          <span class="rq-num">Q3</span>
+          <span class="rq-icon">👥</span>
+          <p>Does the number of registered voters per precinct influence ballot error rates?</p>
+        </div>
+      </div>
 
-    <h2>Discussion</h2>
-
-    <h3 class="subheading">Research Question 1: Differences Across Regions</h3>
-
-    <p>
-    The exploratory analysis revealed statistically significant differences in ballot error rates across Philippine regions (H = 9450.76, p &lt; 0.001). 
-    This suggests that voting experiences and election conditions are not entirely uniform throughout the country. Regional differences in voter behavior, 
-    election administration practices, ballot handling procedures, and access to voter education may contribute to these variations in ballot error rates.
-    </p>
-
-    <p>
-    These findings are socially significant because regions with consistently higher ballot error rates may reflect unequal access to electoral resources 
-    or varying levels of voter familiarity with the voting process. Understanding these disparities may help election administrators develop more targeted 
-    voter education campaigns and improve election accessibility across different regions in the Philippines.
-    </p>
-
-    <p>
-    However, the study is limited because it does not directly measure the underlying causes behind regional differences. Future research may incorporate 
-    demographic, socio-economic, and educational variables to better understand why certain regions experience higher ballot error rates than others.
-    </p>
-
-    <h3 class="subheading">Research Question 2: Senate vs Party-list Ballots</h3>
-
-    <p>
-    The analysis showed a statistically significant difference between senatorial and party-list ballot error rates (U = 8.32 × 10⁹, p &lt; 0.001). 
-    Senatorial ballots consistently exhibited higher error rates than party-list ballots, suggesting that ballot complexity strongly influences the likelihood
-    of voting errors.
-    </p>
-
-    <p>
-    Because senatorial ballots require voters to select multiple candidates from a long list, voters may be more likely to commit overvoting mistakes compared 
-    to party-list ballots, which only require selecting one group. These findings emphasize the importance of voter-friendly ballot design and effective voter
-    education programs, particularly for first-time voters, elderly voters, and other vulnerable populations.
-    </p>
-
-    <p>
-    One limitation of the analysis is that it focuses primarily on overvote-based ballot error rates and does not include additional voting behaviors 
-    such as spoiled ballots or ballot abandonment. Future studies may further examine how ballot layout, font size, candidate ordering, and election
-    technologies affect voter accuracy and ballot usability.
-    </p>
-
-    <h3 class="subheading">Research Question 3: Registered Voters and Error Rate</h3>
-
-    <p>
-    The analysis revealed a weak positive correlation between the number of registered voters and ballot error rates (ρ = 0.104, p &lt; 0.001). 
-    Although statistically significant, the relationship was very weak, indicating that precinct size has minimal practical influence on voting errors.
-    </p>
-
-    <p>
-    This suggests that larger voter populations alone do not strongly contribute to ballot errors. Instead, factors such as ballot complexity, voter familiarity,
-    and election administration practices likely play more important roles in explaining voting mistakes during elections.
-    </p>
-
-    <p>
-    A limitation of this analysis is that the study only examined voter population size and did not include other potentially influential variables such as
-    staffing levels, voting machine efficiency, or voter demographics. Future research may incorporate additional electoral and socio-economic factors to better 
-    understand the broader determinants of ballot error rates in Philippine elections.
-    </p>
-</section>
-
-
-
-<section id="ml" class="section">
-    <h2>Machine Learning Modelling</h2>
-
-    <img src="ml_results.png" class="ml-result-top">
-
-    <h3 class="subheading">Machine Learning Model</h3>
-    <p>
-    Ridge Regression was used to examine whether ballot type and voter population size influence ballot error rates during the 2025 
-    Philippine Midterm Elections.Ridge Regression was selected instead of standard linear regression because it applies L2 regularization, 
-    which improves model stability and reduces the risk of overfitting when working with small datasets. Unlike hypothesis testing, regression 
-    analysis measures both the direction and magnitude of relationships between variables. In this model, ballot error rate was predicted using 
-    ballot type and the number of registered voters per region.
-    </p>
-
-    <h3 class="subheading">Hyperparameter Tuning and Model Evaluation</h3>
-    <p>
-    To improve model stability and satisfy machine learning evaluation standards, hyperparameter tuning was performed using GridSearchCV 
-    with 5-fold cross-validation. The optimal regularization parameter selected for the Ridge Regression model was α = 0.1.
-    </p>
-
-    <p>
-    The model achieved an R² score of 0.929, indicating that approximately 92.9% of the variation in regional ballot error rates can be
-    explained by the included variables. This suggests that the model effectively captures the relationship between ballot structure and 
-    voting errors across Philippine regions.
-    </p>
-
-    <h3 class="subheading">Key Findings</h3>
-    <p>
-    Among the predictors, ballot type was the strongest factor associated with voting errors. Senatorial ballots were linked to 
-    approximately 22.2 percentage points higher ballot error rates compared to party-list ballots (coefficient = 0.2221). This 
-    finding supports the study’s earlier analyses showing that more complex ballots increase the likelihood of voter mistakes such as overvoting.
-    </p>
-
-    <p>
-    Meanwhile, the number of registered voters showed only a weak positive relationship with ballot error rates (coefficient = 0.0054). 
-    Although statistically significant (p = 0.035), the effect size was small, indicating that voter population size has minimal practical
-    influence on ballot errors compared to ballot complexity.
-    </p>
-
-    <h3 class="subheading">Limitations</h3>
-    <p>
-    These findings reinforce the study’s conclusion that ballot design and complexity are more important contributors to voting errors
-    than precinct or regional population size. The results highlight the importance of voter-friendly ballot layouts and effective voter 
-    education programs, particularly for first-time and vulnerable voters in the Philippines.
-    </p>
-
-    <p>
-    However, several limitations should be acknowledged. The regression analysis used aggregated regional-level data with only 36 
-    observations, which may overlook precinct-level voting patterns and localized electoral behaviors. Additionally, the model did 
-    not include potentially relevant variables such as educational attainment, socio-economic conditions, ballot layout characteristics,
-    or machine usability factors.
-    </p>
-
-    <h3 class="subheading">Future Recommendations</h3>
-    <p>
-    Future studies may improve the analysis by incorporating precinct-level machine learning models, demographic variables, and more 
-    advanced predictive techniques such as random forests or decision trees to better understand voting behavior and ballot errors in
-    Philippine elections.
-    </p>
-</section>
-
-<div class="section-divider"></div>
-<section id="conclusion" class="section alt">
-    <h2 class="subheading">Conclusion</h2>
-
-    <p>
-    This study examined ballot error rates during the 2025 Philippine Midterm Elections using exploratory data analysis and machine 
-    learning techniques. The findings consistently showed that senatorial ballots produced significantly higher error rates than party-list ballots,
-    suggesting that ballot complexity strongly influences voting mistakes. The study also found significant regional differences in ballot 
-    error rates, while precinct size showed only a weak relationship with voting errors.
-    </p>
-
-    <p>
-    These results highlight the importance of voter-friendly ballot design, accessible election systems, and effective voter education programs. 
-    The findings suggest that reducing ballot complexity and improving voter guidance may help minimize voting errors and strengthen democratic 
-    participation, particularly among first-time voters, elderly voters, and communities with limited access to electoral resources.
-    </p>
-
-    <p>
-    The study is important because voting errors may affect the accuracy and inclusiveness of election outcomes. By identifying factors associated
-     with ballot errors, this research may help election administrators, policymakers, educators, and civic organizations make more informed decisions 
-     regarding election accessibility and voter assistance initiatives in the Philippines.
-    </p>
-
-    <p>
-    Based on the findings, several actionable recommendations may be considered. Election authorities may improve ballot layouts to make them 
-    easier to understand and navigate, especially for complex senatorial ballots. Schools, local governments, and civic organizations may also 
-    strengthen voter education campaigns to better prepare citizens for the voting process. Additionally, future electoral reforms may prioritize 
-    accessibility features and clearer voting instructions to reduce confusion and improve voter confidence.
-    </p>
-
-    <p>
-    Overall, the research demonstrates how data science methods can help identify patterns in electoral behavior and support evidence-based improvements 
-    in democratic processes. By understanding the factors associated with voting errors, Filipinos may become more informed participants in elections 
-    and contribute to a more accessible, efficient, and inclusive electoral system.
-    </p>
-
-</section>
-
-<div class="section-divider"></div>
-
-<section id="about" class="section alt">
-
-<h2>About Us</h2>
-
-<div class="team">
-    <div class="member">
-        <img src="public/images/Wyndell.jpg" class="member-img">
-        <p>Wyndell Almazan</p>
+      <h3 class="sub-title reveal">Hypotheses</h3>
+      <div class="card-grid reveal">
+        <div class="hyp-card">
+          <span class="hyp-label">H₁</span>
+          <p>Ballot error rates differ significantly across Philippine regions.</p>
+        </div>
+        <div class="hyp-card">
+          <span class="hyp-label">H₂</span>
+          <p>Senatorial ballots exhibit higher error rates than party-list ballots.</p>
+        </div>
+        <div class="hyp-card">
+          <span class="hyp-label">H₃</span>
+          <p>The number of registered voters per precinct is significantly associated with ballot error rates.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="member">
-        <img src="public/images/Sofia.jpg" class="member-img">
-        <p>Mariel Sofia Pulbosa</p>
+  <!-- ── DATA COLLECTION ── -->
+  <section id="data" class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">02</span>
+        <h2>Data Collection</h2>
+      </div>
+
+      <div class="stats-row reveal">
+        <div class="stat-item">
+          <span class="stat-num counter" data-target="92745">0</span>
+          <span class="stat-label">Precinct Records</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num counter" data-target="2">0</span>
+          <span class="stat-label">Datasets</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num counter" data-target="78">0</span>
+          <span class="stat-label">Senate Columns</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num counter" data-target="167">0</span>
+          <span class="stat-label">Partylist Columns</span>
+        </div>
+      </div>
+
+      <div class="two-col reveal">
+        <div>
+          <h3>Dataset Description</h3>
+          <p>This project uses two 2025 Philippine Midterm Election datasets containing precinct-level electoral data — registered voters, actual voters, overvotes, undervotes, valid votes, and vote counts per candidate for senatorial and party-list races.</p>
+          <p>The senate dataset contained 92,822 rows and 78 columns; the party-list, 92,822 rows and 167 columns. Seventy-seven precincts with zero voters were removed, resulting in <strong>92,745 rows</strong>.</p>
+
+          <h3 style="margin-top: 2rem;">Dataset Repository</h3>
+          <p>Full datasets (Google Sheets XLSX) are available below:</p>
+          <div class="btn-group" style="margin-top:1rem;">
+            <a href="https://docs.google.com/spreadsheets/d/1WAgBq_4D8Ubl50wpnlpm6EGZ3DFVXrZR/edit?usp=sharing&ouid=106460850389607448654&rtpof=true&sd=true" target="_blank" class="btn-primary small">Dataset 1 — Senate</a>
+            <a href="https://docs.google.com/spreadsheets/d/1sajKeBG35TOtopH56l5y0jnS1WtKRmAF/edit?usp=drivesdk&ouid=113079674400911362852&rtpof=true&sd=true" target="_blank" class="btn-primary small">Dataset 2 — Party-list</a>
+          </div>
+        </div>
+        <div class="data-visual reveal">
+          <img src="public/images/data.svg" alt="Data illustration">
+        </div>
+      </div>
+
+      <h3 class="sub-title reveal">Data Collection Process</h3>
+      <p class="reveal">The datasets were published by Vianney Tumbagahan on Figshare using a scraping script by Prof. Christian Alis (AIM). Version 2 was used, updated to account for 23 missing election returns. No sampling was applied — the dataset contains complete precinct records.</p>
+
+      <div class="pipeline reveal">
+        <div class="pipe-step">
+          <img src="public/images/comelec.svg" alt="">
+          <span>COMELEC Data</span>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <img src="public/images/scrape.svg" alt="">
+          <span>Scraping Script</span>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <img src="public/images/dataset.svg" alt="">
+          <span>Election Dataset</span>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <img src="public/images/cleaning.svg" alt="">
+          <span>Data Cleaning</span>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <img src="public/images/analysis.svg" alt="">
+          <span>Statistical Analysis</span>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="member">
-        <img src="public/images/Jesse.jpg" class="member-img">
-        <p>Jesus Manuel Verzosa</p>
+  <!-- ── DATA PREPROCESSING ── -->
+  <section id="analysis" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">03</span>
+        <h2>Data Preprocessing</h2>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-marker">1</div>
+          <div class="timeline-body">
+            <h4>Dataset Inspection</h4>
+            <p>CSV files were loaded using Python Pandas. General info of both datasets was checked using <code>info()</code>.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">2</div>
+          <div class="timeline-body">
+            <h4>Duplicate Checks</h4>
+            <p>Used <code>duplicated().sum()</code> to check for duplicates. No duplicate rows or machineID entries were found.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">3</div>
+          <div class="timeline-body">
+            <h4>Removal of Zero Voters</h4>
+            <p>Rows with <code>actualVoters = 0</code> (77 precincts) were removed to prevent division-by-zero when computing error rates.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">4</div>
+          <div class="timeline-body">
+            <h4>Consistency Checks</h4>
+            <p>All actual voters verified to be ≤ registered voters. No precinct had zero registered voters.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">5</div>
+          <div class="timeline-body">
+            <h4>Rate Calculations</h4>
+            <p>Turnout rate: <code>actualVoters / registeredVoters</code><br>Ballot error rate: <code>overVotes / actualVoters</code></p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">6</div>
+          <div class="timeline-body">
+            <h4>Export</h4>
+            <p>Cleaned datasets and region-level summaries exported as CSV, uploaded to Google Sheets.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-</div>
+  <!-- ── EDA ── -->
+  <section id="EDA" class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">04</span>
+        <h2>Exploratory Data Analysis</h2>
+      </div>
 
-<p class="about-text">
-This study was conducted by third-year Computer Science students from the University of the Philippines Diliman. The research focuses on analyzing ballot error rates in the 2025 Philippine Midterm Elections, examining patterns across regions, ballot types, and precinct sizes using statistical methods. The group aims to better understand the factors that may contribute to voter errors and to provide insights that could help improve the electoral process.
-</p>
+      <div class="info-callout reveal">
+        <p>Key notes: <strong>overVotes</strong> counts excess selections — one voter can contribute multiple overvotes. Precincts with error rate &gt; 1 were excluded from visualizations. OAV and LAV precincts were also excluded due to non-standard sizes.</p>
+      </div>
 
-</section>
-  
-<section id="references" class="section">
+      <div class="plot-section reveal">
+        <h3>RQ1 — Ballot Error Rates Across Philippine Regions</h3>
+        <iframe src="plots/RQ1_ProjectPlot.html" class="plot-frame" loading="lazy"></iframe>
+        <p class="plot-caption">Ballot error rates differ significantly across Philippine regions, indicating regional variation in voting behavior and ballot handling.</p>
+      </div>
 
-<h2 class="section-title">References</h2>
+      <div class="plot-section reveal">
+        <h3>RQ2 — Senate vs. Party-list Error Rates</h3>
+        <iframe src="plots/RQ2_ProjectPlot.html" class="plot-frame" loading="lazy"></iframe>
+        <p class="plot-caption">Senatorial ballots consistently exhibit higher error rates compared to party-list ballots, suggesting ballot complexity increases voting errors.</p>
+      </div>
 
-<div class="references-list">
+      <div class="plot-section reveal">
+        <h3>RQ3 — Registered Voters vs. Error Rate</h3>
+        <iframe src="plots/RQ3_ProjectPlot.html" class="plot-frame" loading="lazy"></iframe>
+        <p class="plot-caption">Most precincts cluster within a similar range. A slight upward trend exists but the relationship is weak — precinct size alone does not strongly predict voting errors.</p>
+      </div>
 
-<p>
-Bernardo, N., Pearson-Merkowitz, S., & Macht, G. A. (2021).
-The effect of ballot characteristics on the likelihood of voting errors.
-<i>State Politics & Policy Quarterly</i>, 22(2), 1–19.
-https://doi.org/10.1017/spq.2021.24
-</p>
+      <div class="plot-section reveal">
+        <h3 id="nutshell">Nutshell — Senatorial Ballots Consistently Show Higher Error Rates</h3>
+        <iframe src="plots/nutshell.html" class="plot-frame" loading="lazy"></iframe>
+        <p class="plot-caption">Across all regions, senatorial ballots have higher error rates than party-list ballots. Party-list rates are generally low and uniform, while senatorial rates are higher and more variable.</p>
+      </div>
 
-<p>
-Pachón, M., Carroll, R., & Barragán, H. (2017).
-Ballot design and invalid votes: Evidence from Colombia.
-<i>Electoral Studies</i>, 48, 98–110.
-https://doi.org/10.1016/j.electstud.2017.05.005
-</p>
+      <div class="section-sub-header reveal">
+        <h3>Hypothesis Testing</h3>
+        <p>The distribution of ballot error rates is highly right-skewed, so <strong>non-parametric tests</strong> were used throughout.</p>
+      </div>
 
-<p>
-Tumbagahan, V. (2025).
-<i>2025 Philippine Midterm Elections Data</i> [Dataset].
-Figshare.
-https://figshare.com/articles/dataset/2025_Philippine_Midterm_Elections_Data/29086472
-</p>
+      <iframe src="plots/curve_distribution.html" class="plot-frame reveal" loading="lazy"></iframe>
 
-</div>
+      <div class="results-layout reveal">
+        <div class="results-text">
+          <div class="result-block">
+            <h4>RQ1 — Differences Across Regions</h4>
+            <div class="hypothesis-row"><span class="h-label">H₀</span><span>No significant differences in ballot error rates across Philippine regions.</span></div>
+            <div class="hypothesis-row"><span class="h-label">H₁</span><span>Statistically significant differences exist across regions.</span></div>
+            <div class="result-stat">Kruskal–Wallis: H = 9450.76, p &lt; 0.001 → <strong>H₀ Rejected</strong></div>
+          </div>
 
-</section>
-  
-<script>
+          <div class="result-block">
+            <h4>RQ2 — Senate vs. Party-list</h4>
+            <div class="hypothesis-row"><span class="h-label">H₀</span><span>No significant difference between senatorial and party-list ballot error rates.</span></div>
+            <div class="hypothesis-row"><span class="h-label">H₁</span><span>Ballot error rates are significantly higher in senatorial ballots.</span></div>
+            <div class="result-stat">Mann–Whitney U: U = 8.32×10⁹, p &lt; 0.001 → <strong>H₀ Rejected</strong></div>
+          </div>
 
-function scrollToOverview() {
+          <div class="result-block">
+            <h4>RQ3 — Registered Voters &amp; Error Rate</h4>
+            <div class="hypothesis-row"><span class="h-label">H₀</span><span>No significant association between registered voters and ballot error rates.</span></div>
+            <div class="hypothesis-row"><span class="h-label">H₁</span><span>Number of registered voters is significantly associated with ballot error rates.</span></div>
+            <div class="result-stat">Spearman: ρ = 0.104, p &lt; 0.001 → <strong>H₀ Rejected (weak effect)</strong></div>
+          </div>
+        </div>
+        <div class="results-img-wrap">
+          <img src="hypotheses_test_results.png" alt="Hypothesis test results" class="results-img">
+        </div>
+      </div>
+    </div>
+  </section>
 
-document.getElementById("overview").scrollIntoView({
-behavior: "smooth"
-});
+  <!-- ── DISCUSSION ── -->
+  <section id="discussion" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">05</span>
+        <h2>Discussion</h2>
+      </div>
 
-}
+      <div class="discussion-grid reveal">
+        <div class="discussion-card">
+          <span class="disc-tag">RQ1</span>
+          <h4>Regional Differences</h4>
+          <p>Significant differences across regions (H = 9450.76, p &lt; 0.001) suggest that voter behavior, ballot handling, and election administration are not uniform. Regions with higher error rates may reflect unequal access to electoral resources or voter education.</p>
+          <p class="limitation">Limitation: Underlying causes aren't directly measured. Future work should incorporate demographic and socio-economic variables.</p>
+        </div>
+        <div class="discussion-card">
+          <span class="disc-tag">RQ2</span>
+          <h4>Senate vs. Party-list</h4>
+          <p>Significant difference (U = 8.32×10⁹, p &lt; 0.001) between ballot types. Senatorial ballots require selecting multiple candidates from long lists, increasing overvoting risk. This highlights the importance of voter-friendly design and education for first-time and elderly voters.</p>
+          <p class="limitation">Limitation: Only overvote-based error rates were examined. Spoiled ballots and ballot abandonment warrant future study.</p>
+        </div>
+        <div class="discussion-card">
+          <span class="disc-tag">RQ3</span>
+          <h4>Precinct Size</h4>
+          <p>Weak positive correlation (ρ = 0.104, p &lt; 0.001) shows precinct size has minimal practical influence. Ballot complexity and voter familiarity are more important factors than population size.</p>
+          <p class="limitation">Limitation: Staffing levels, machine efficiency, and voter demographics were not included. Future research should cover broader determinants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</script>
+  <!-- ── ML MODELLING ── -->
+  <section id="ml" class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">06</span>
+        <h2>Machine Learning Modelling</h2>
+      </div>
 
-<script>
+      <img src="ml_results.png" alt="ML results" class="ml-img reveal">
 
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}
-});
-});
+      <div class="ml-grid reveal">
+        <div class="ml-card">
+          <h4>Model</h4>
+          <p><strong>Ridge Regression</strong> was used to examine whether ballot type and voter population size influence ballot error rates. L2 regularization improves stability and reduces overfitting.</p>
+        </div>
+        <div class="ml-card">
+          <h4>Hyperparameter Tuning</h4>
+          <p>GridSearchCV with 5-fold cross-validation selected optimal α = 0.1. The model achieved <strong>R² = 0.929</strong>, explaining ~92.9% of variance in regional ballot error rates.</p>
+        </div>
+        <div class="ml-card accent">
+          <h4>Key Findings</h4>
+          <p>Ballot type was the strongest predictor — senatorial ballots linked to <strong>~22.2 pp higher</strong> error rates (coeff = 0.2221). Registered voters had minimal effect (coeff = 0.0054, p = 0.035).</p>
+        </div>
+        <div class="ml-card">
+          <h4>Limitations &amp; Future Work</h4>
+          <p>Only 36 regional observations used. Model excluded education, socio-economics, layout factors. Future studies may use precinct-level models and random forests or decision trees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-document.querySelectorAll(".card, .step, .member").forEach(el => {
-observer.observe(el);
-});
+  <!-- ── CONCLUSION ── -->
+  <section id="conclusion" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">07</span>
+        <h2>Conclusion</h2>
+      </div>
 
-</script>
-<script src="src/script.js"></script>
-  
+      <div class="conclusion-text reveal">
+        <p>This study examined ballot error rates in the 2025 Philippine Midterm Elections using EDA and machine learning. Senatorial ballots produced significantly higher error rates, confirming that ballot complexity strongly influences voting mistakes. Significant regional differences were found, while precinct size showed only a weak relationship.</p>
+        <p>These results highlight the importance of voter-friendly ballot design, accessible election systems, and effective voter education. Reducing ballot complexity and improving voter guidance may help minimize errors and strengthen democratic participation.</p>
+        <p>Data science methods can identify patterns in electoral behavior and support evidence-based improvements in democratic processes — helping Filipinos become more informed participants in elections.</p>
+      </div>
+
+      <div class="recommendations reveal">
+        <h3>Recommendations</h3>
+        <div class="rec-grid">
+          <div class="rec-item">
+            <span class="rec-icon">📋</span>
+            <p>Improve ballot layouts to be easier to understand, especially for complex senatorial ballots.</p>
+          </div>
+          <div class="rec-item">
+            <span class="rec-icon">🎓</span>
+            <p>Strengthen voter education campaigns to better prepare citizens for the voting process.</p>
+          </div>
+          <div class="rec-item">
+            <span class="rec-icon">♿</span>
+            <p>Prioritize accessibility features and clearer voting instructions to reduce confusion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REFERENCES ── -->
+  <section id="references" class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">08</span>
+        <h2>References</h2>
+      </div>
+      <div class="references reveal">
+        <p>Bernardo, N., Pearson-Merkowitz, S., &amp; Macht, G. A. (2021). The effect of ballot characteristics on the likelihood of voting errors. <em>State Politics &amp; Policy Quarterly</em>, 22(2), 1–19. https://doi.org/10.1017/spq.2021.24</p>
+        <p>Pachón, M., Carroll, R., &amp; Barragán, H. (2017). Ballot design and invalid votes: Evidence from Colombia. <em>Electoral Studies</em>, 48, 98–110. https://doi.org/10.1016/j.electstud.2017.05.005</p>
+        <p>Tumbagahan, V. (2025). <em>2025 Philippine Midterm Elections Data</em> [Dataset]. Figshare. https://figshare.com/articles/dataset/2025_Philippine_Midterm_Elections_Data/29086472</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">09</span>
+        <h2>About Us</h2>
+      </div>
+      <div class="team reveal">
+        <div class="member">
+          <img src="public/images/Wyndell.jpg" alt="Wyndell Almazan">
+          <h4>Wyndell Almazan</h4>
+        </div>
+        <div class="member">
+          <img src="public/images/Sofia.jpg" alt="Mariel Sofia Pulbosa">
+          <h4>Mariel Sofia Pulbosa</h4>
+        </div>
+        <div class="member">
+          <img src="public/images/Jesse.jpg" alt="Jesus Manuel Verzosa">
+          <h4>Jesus Manuel Verzosa</h4>
+        </div>
+      </div>
+      <p class="about-text reveal">Third-year Computer Science students from the University of the Philippines Diliman. This research analyzes ballot error rates in the 2025 Philippine Midterm Elections, examining patterns across regions, ballot types, and precinct sizes to provide insights that can improve the electoral process.</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <p>Ballot Blunders · 2025 Philippine Midterm Elections Analysis · UP Diliman CS</p>
+      <p>SDG 16: Peace, Justice, and Strong Institutions</p>
+    </div>
+  </footer>
+
+  <script src="src/script.js"></script>
 </body>
 </html>
