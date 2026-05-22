@@ -70,6 +70,7 @@
           affect the accuracy of election results and may indicate issues in ballot design, voter
           understanding, or precinct-level election management.
           </p>
+          <p> </p>
           <p>
           Previous research has shown that ballot characteristics, including length and number of
           candidates, significantly influence the likelihood of voting errors (Pachón et al., 2017;
@@ -100,7 +101,7 @@
           compared to party-list ballots. Third, the study analyzes whether the number of registered
           voters in a precinct is associated with ballot error rates.
           </p>
-          
+          <p> </p>
           <p>
           To address these questions, the study will conduct statistical analyses using a large election
           dataset containing precinct-level information. These analyses include descriptive statistics,
@@ -137,7 +138,7 @@
           ballots, and that the number of registered voters per precinct is significantly associated
           with ballot error rates.
           </p>
-          
+          <p> </p>
           <p>
           By testing these hypotheses using statistical methods, the research aims to identify factors
           that contribute to ballot errors and provide evidence-based insights that may support
@@ -197,11 +198,11 @@
           voters, actual voters, overvotes, undervotes, valid votes, and vote counts per
           candidate for senatorial and party-lists.
           </p>
-          
+          <p> </p>
           <p>
           These include overseas (OAV) and local absentee voting (LAV).
           </p>
-          
+          <p> </p>
           <p>
           The senate results contained 92,822 rows (0 to 92,821) and 78 columns,
           while the partylist results contained 92,822 rows and 167 columns.
@@ -229,13 +230,13 @@
           at the Asian Institute of Management. These datasets are originally sourced
           from the Commission on Elections (COMELEC) website.
           </p>
-          
+          <p> </p>
           <p>
           For transparency, since May 21, 2025, the dataset has been updated to
           account for 23 missing election returns due to a bug with the scraping script.
           Fourteen were from Philippine results and nine from overseas absentee voting.
           </p>
-          
+          <p> </p>
           <p>
           Version 2 of the dataset was used for this project. No sampling was applied
           because the dataset already contains the complete records of precinct results
@@ -341,14 +342,14 @@
         This means that a single voter can contribute multiple overvotes if they select more candidates than allowed, resulting in values 
         that may exceed the number of voters in a precinct.
         </p>
-    
+        <p> </p>
         <p>
         Second, precincts with an <b>errorRate greater than 1</b> were excluded from certain visualizations and analyses. These cases occur when the 
         number of excess selections exceeds the total number of voters, indicating multiple invalid selections per voter on average. Such values 
         reflect extreme error intensity rather than typical voting behavior and can distort the overall distribution. Therefore, they were removed 
         to improve interpretability while preserving the meaningful patterns in the data.
         </p>
-    
+        <p> </p>
         <p>
         Lastly, overseas Absentee Voting (OAV) and Local Absentee Voting (LAV) precincts were excluded from the analysis. These voting categories differ 
         structurally from regular precincts in terms of voter composition, turnout behavior, and ballot handling procedures. In particular, OAV and LAV 
@@ -383,7 +384,22 @@
 
       <div class="section-sub-header reveal">
         <h3>Hypothesis Testing</h3>
-        <p>The distribution of ballot error rates is highly right-skewed, so <strong>non-parametric tests</strong> were used throughout.</p>
+        <div class="info-callout reveal">
+        <p>
+        Before conducting hypothesis testing, the distribution of ballot error rates was examined using a histogram with a kernel density estimate (KDE). The distribution is highly right-skewed, 
+        with a concentration of low error rates and a long tail of extreme values. This indicates that the data do not follow a normal distribution.
+        </p>
+        <p> </p>
+        <p>
+        Due to this non-normality and the presence of outliers, non-parametric statistical tests were used for analysis. These methods do not assume normality and are more appropriate for 
+        skewed distributions, ensuring more robust and reliable results.
+        </p>
+        <p> </p>
+        <p>
+        As a result, the findings from hypothesis testing were interpreted not only based on statistical significance but also on the magnitude of the observed effects. This is 
+        particularly important given the large sample size, where even weak relationships may appear statistically significant.
+        </p>
+      </div>
       </div>
 
       <iframe src="plots/curve_distribution.html" class="plot-frame reveal" loading="lazy"></iframe>
@@ -394,21 +410,22 @@
             <h4>RQ1 — Differences Across Regions</h4>
             <div class="hypothesis-row"><span class="h-label">H₀</span><span>No significant differences in ballot error rates across Philippine regions.</span></div>
             <div class="hypothesis-row"><span class="h-label">H₁</span><span>Statistically significant differences exist across regions.</span></div>
-            <div class="result-stat">Kruskal–Wallis: H = 9450.76, p &lt; 0.001 → <strong>H₀ Rejected</strong></div>
+            <div class="result-stat">A Kruskal–Wallis test was conducted to examine whether ballot error rates differ across Philippine regions. The results indicate a statistically significant difference in error rates between regions (H = 9450.76, p < 0.001). Therefore, the null hypothesis is rejected. This suggests that regional factors may influence voting errors, such as differences in voter behavior, ballot handling, or election administration practices.</div>
+            
           </div>
 
           <div class="result-block">
             <h4>RQ2 — Senate vs. Party-list</h4>
             <div class="hypothesis-row"><span class="h-label">H₀</span><span>No significant difference between senatorial and party-list ballot error rates.</span></div>
             <div class="hypothesis-row"><span class="h-label">H₁</span><span>Ballot error rates are significantly higher in senatorial ballots.</span></div>
-            <div class="result-stat">Mann–Whitney U: U = 8.32×10⁹, p &lt; 0.001 → <strong>H₀ Rejected</strong></div>
+            <div class="result-stat">A Mann–Whitney U test was performed to compare ballot error rates between senatorial and party-list ballots. The results show a statistically significant difference between the two ballot types (U = 8.32 × 10⁹, p < 0.001). Therefore, the null hypothesis is rejected. Senatorial ballots exhibit higher error rates, suggesting that greater ballot complexity increases the likelihood of voting errors.</div>
           </div>
 
           <div class="result-block">
             <h4>RQ3 — Registered Voters &amp; Error Rate</h4>
             <div class="hypothesis-row"><span class="h-label">H₀</span><span>No significant association between registered voters and ballot error rates.</span></div>
             <div class="hypothesis-row"><span class="h-label">H₁</span><span>Number of registered voters is significantly associated with ballot error rates.</span></div>
-            <div class="result-stat">Spearman: ρ = 0.104, p &lt; 0.001 → <strong>H₀ Rejected (weak effect)</strong></div>
+            <div class="result-stat">A Spearman rank correlation was used to assess the relationship between the number of registered voters and ballot error rates. The analysis revealed a weak positive correlation (ρ = 0.104, p < 0.001). Therefore, the null hypothesis is rejected. However, the strength of the relationship is very weak, indicating that precinct size has minimal practical effect on voting errors.</div>
           </div>
         </div>
         <div class="results-img-wrap">
