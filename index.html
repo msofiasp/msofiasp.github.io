@@ -57,7 +57,7 @@
   <section id="democracy" class="section section-alt">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">02</span>
+        <span class="section-label">00</span>
         <h2>Data for Democracy</h2>
       </div>
 
@@ -402,7 +402,15 @@
       <div class="plot-section reveal">
         <h3>RQ3 — Registered Voters vs. Error Rate</h3>
         <iframe src="plots/RQ3_ProjectPlot.html" class="plot-frame" loading="lazy"></iframe>
-        <p class="plot-caption">Most precincts cluster within a similar range. A slight upward trend exists but the relationship is weak — precinct size alone does not strongly predict voting errors.</p>
+        <p class="plot-caption">This plot examines whether precinct size is associated with ballot error rates. Most precincts cluster within a similar range of registered voters, reflecting standardized 
+    precinct sizes in the electoral system. Although a slight upward trend may be observed, the relationship is weak because the data points are widely scattered across all levels 
+    of registered voters. For any given precinct size, there is a broad range of error rates, indicating no consistent pattern. This suggests that precinct size alone does not strongly influence voting errors. 
+        </p>
+        <p class="plot-caption">Note: OAV and LAV precincts were excluded due to their non-standard and aggregated voter counts, which could distort the analysis. Only regular precincts were included for consistency. In addition, an
+    error rate of 100% does not mean that all voters made errors. Instead, it indicates that the total number of excess selections (overvotes) is equal to the number of voters in that precinct. Since the 
+    error rate is computed as overvotes divided by actual voters, a value of 1.0 (100%) means there is, on average, one excess vote per voter. This occurs because the overVotes variable counts the number 
+    of extra selections beyond the allowed limit, not the number of individuals who made errors. As a result, error rates reflect the intensity of voting errors rather than the proportion of voters who committed mistakes.
+        </p>
       </div>
 
       <div class="plot-section reveal">
